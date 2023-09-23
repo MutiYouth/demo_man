@@ -8,7 +8,7 @@
     <name>Demo_man</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor email="support@yourcompany.com" url="https://www.yourcompany.com">YourCompany</vendor>
+    <vendor email="support@sunslab.com" url="https://www.sunslab.com">sunslab</vendor>
 
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
@@ -27,4 +27,10 @@
     <extensions defaultExtensionNs="com.intellij">
 
     </extensions>
+    <actions>
+        <action id="HelloWordAction" class="com.weng.demo_man.HelloWordAction" text="Show Hello World"
+                description="Show hello world with pop window">
+            <add-to-group group-id="HelpMenu" anchor="last"/>
+        </action>
+    </actions>
 </idea-plugin>
