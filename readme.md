@@ -1,3 +1,6 @@
+An intelij learning commit lessons.<br/>
+PROJECT LOCATION: https://github.com/MutiYouth/demo_man
+
 
 
 ## todos:
