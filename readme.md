@@ -7,8 +7,8 @@
   * 将 main下的 Kotlin改为java.
   * 同时，将gradle的 Build and run using 改为： Intelij IDEA.
 * ~~Notification~~
-* tool Window
-* Dialog
+* ~~tool Window~~
+* ~~Dialog~~
 * File Selection
 * 配置参数持久化
 * settings / preferences

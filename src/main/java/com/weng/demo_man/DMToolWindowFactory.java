@@ -1,13 +1,18 @@
 package com.weng.demo_man;
 
+import com.intellij.openapi.actionSystem.AnActionEvent;
+import com.intellij.openapi.actionSystem.LangDataKeys;
 import com.intellij.openapi.project.*;
 import com.intellij.openapi.wm.*;
+import com.intellij.psi.PsiDirectory;
 import com.intellij.ui.content.*;
 import lombok.Data;
+import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.util.Objects;
 
 public class DMToolWindowFactory implements ToolWindowFactory, DumbAware {
@@ -33,6 +38,7 @@ public class DMToolWindowFactory implements ToolWindowFactory, DumbAware {
 			currentDate.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource(CALENDAR_ICON_PATH))));
 			contentPanel.add(currentDate);
 			contentPanel.add(createControlsPanel(toolWindow));
+			contentPanel.add(createDMDialog());
 		}
 
 		@NotNull
@@ -41,6 +47,21 @@ public class DMToolWindowFactory implements ToolWindowFactory, DumbAware {
 			hideToolWindowButton.setSize(120, 50);
 			hideToolWindowButton.addActionListener(e -> toolWindow.hide(null));
 			return hideToolWindowButton;
+		}
+
+		@NotNull
+		private JButton createDMDialog() {
+			JButton show_dlg = new JButton("Show Dialog");
+			show_dlg.setSize(120, 50);
+			show_dlg.addActionListener(actionEvent -> {
+				DMDialog dialog = new DMDialog(null, "dialog title");
+				if (dialog.showAndGet()) {
+					// user pressed OK
+					// System.out.println(dialog.getVar1());
+					System.out.println("cccc");
+				}
+			});
+			return show_dlg;
 		}
 
 		JPanel getContentPanel(){
