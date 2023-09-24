@@ -15,18 +15,10 @@ public class HelloWordAction extends AnAction {
 	@Override
 	public void actionPerformed(AnActionEvent e) {
 		Project project = e.getData(PlatformDataKeys.PROJECT);
-		Messages.showMessageDialog(project, "Say hello world ~", "Info", Messages.getInformationIcon());
+		Messages.showMessageDialog(project, "<br>Say hello<br/> world ~", "Info", Messages.getInformationIcon());
 
 
-		/*
-		NotificationGroup notificationGroup = new NotificationGroup("testid", NotificationDisplayType.BALLOON, false);
-		 *//**
-		 * content :  通知内容
-		 * type  ：通知的类型，warning,info,error
-		 *//*
-		Notification notification = notificationGroup.createNotification("测试通知", MessageType.INFO);
-		Notifications.Bus.notify(notification);
-		*/
+		DMNotifier.notifyError(null, "Hi Balloons Notifications.<br/> 23.9.24");
 
 
 		PsiFile psiFile = e.getData(CommonDataKeys.PSI_FILE);
