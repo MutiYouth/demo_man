@@ -25,7 +25,7 @@ public class HelloWordAction extends AnAction {
 		if(psiFile == null)
 			return;
 		String classPath = psiFile.getVirtualFile().getPath();
-		Messages.showMessageDialog(project, "爷说你的路径是: " + classPath, "Hi IDEA Plugin", Messages.getInformationIcon());
+		Messages.showMessageDialog(project, "爷说你的路径: " + classPath, "Hi IDEA Plugin", Messages.getInformationIcon());
 
 	}
 }

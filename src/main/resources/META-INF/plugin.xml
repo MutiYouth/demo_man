@@ -28,6 +28,8 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
         <notificationGroup id="DM Notifications" displayType="BALLOON" key="notification.group.name"/>
+        <toolWindow id="DM ToolWindow" secondary="true" icon="AllIcons.Toolwindows.WebToolWindow"
+                    anchor="right" factoryClass="com.weng.demo_man.DMToolWindowFactory"/>
     </extensions>
     <actions>
         <action id="HelloWordAction" class="com.weng.demo_man.HelloWordAction" text="Show Hello World"
