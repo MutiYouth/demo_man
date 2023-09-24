@@ -41,6 +41,7 @@
     </extensions>
     <actions>
         <action id="HelloWordAction" class="com.weng.demo_man.HelloWordAction" text="Show Hello World"
+                icon="com.weng.demo_man.ui.DMIcons.DMIcon"
                 description="Show hello world with pop window">
             <add-to-group group-id="HelpMenu" anchor="last"/>
         </action>

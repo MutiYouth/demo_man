@@ -13,10 +13,10 @@ PROJECT LOCATION: https://github.com/MutiYouth/demo_man
 * ~~tool Window~~
 * ~~Dialog~~
 * File Selection
-* 配置参数持久化
 * ~~settings / preferences~~
 * Editor
 * runConfig
+* ~~Icons~~
 * 内容见 1.4 of word "INTELIJ PLUGINS DEV.docx"... 
 
 ### inte ros-integrate
