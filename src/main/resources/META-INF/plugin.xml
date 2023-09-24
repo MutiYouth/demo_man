@@ -30,6 +30,14 @@
         <notificationGroup id="DM Notifications" displayType="BALLOON" key="notification.group.name"/>
         <toolWindow id="DM ToolWindow" secondary="true" icon="AllIcons.Toolwindows.WebToolWindow"
                     anchor="right" factoryClass="com.weng.demo_man.DMToolWindowFactory"/>
+        <!--
+        settings
+        applicationConfigurable 没有制定 parentId="tools" ， 则在 Other Settings中。
+        -->
+        <applicationConfigurable instance="com.weng.demo_man.settings.AppSettingsConfigurable"
+                                 id="com.weng.demo_man.settings.AppSettingsConfigurable"
+                                 displayName="DM: Application Settings"/>
+        <applicationService serviceImplementation="com.weng.demo_man.settings.AppSettingsState"/>
     </extensions>
     <actions>
         <action id="HelloWordAction" class="com.weng.demo_man.HelloWordAction" text="Show Hello World"
