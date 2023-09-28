@@ -30,6 +30,9 @@
     <!-- Text to display as company information on Settings | Plugin page -->
     <vendor url="https://github.com/MutiYouth/demo_man">Demo Man</vendor>
 
+
+
+
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
@@ -40,6 +43,7 @@
         <notificationGroup id="DM Notifications" displayType="BALLOON" key="notification.group.name"/>
         <toolWindow id="DM ToolWindow" secondary="true" icon="AllIcons.Toolwindows.WebToolWindow"
                     anchor="right" factoryClass="com.weng.demo_man.tool_wnd.DMToolWindowFactory"/>
+
         <!--
         settings
         applicationConfigurable 没有制定 parentId="tools" ， 则在 Other Settings中。
@@ -48,7 +52,13 @@
                                  id="com.weng.demo_man.settings.AppSettingsConfigurable"
                                  displayName="DM: Application Settings"/>
         <applicationService serviceImplementation="com.weng.demo_man.settings.AppSettingsState"/>
+
+        <!--  live templates  -->
+        <defaultLiveTemplates file="/config_data/live_templates/markdown.xml"/>
+        <liveTemplateContext implementation="com.weng.demo_man.live_templates.MarkdownContext" contextId="MARKDOWN"/>
+        <liveTemplateMacro implementation="com.weng.demo_man.live_templates.TitleCaseMacro"/>
     </extensions>
+
     <actions>
         <action id="HelloWordAction" class="com.weng.demo_man.HelloWordAction" text="Show Hello World"
                 icon="com.weng.demo_man.ui.DMIcons.DMIcon"
