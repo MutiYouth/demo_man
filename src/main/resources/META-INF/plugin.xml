@@ -19,6 +19,16 @@
     <em>most HTML tags may be used</em>
     ]]>
     </description>
+    <change-notes>
+    <![CDATA[
+      <ul>
+        <li><b>0.1.1</b> begin to integrate intelij examples.</li>
+        <li><b>0.1.0</b> basic arch.</li>
+      </ul>
+    ]]>
+    </change-notes>
+    <!-- Text to display as company information on Settings | Plugin page -->
+    <vendor url="https://github.com/MutiYouth/demo_man">Demo Man</vendor>
 
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
@@ -45,5 +55,9 @@
                 description="Show hello world with pop window">
             <add-to-group group-id="HelpMenu" anchor="last"/>
         </action>
+        <group id="DM_Plugin.GreetingMenu" text="Greeting" description="DM Greeting menu">
+            <add-to-group group-id="HelpMenu" anchor="last"/>
+            <action id="MyPlugin.Hello" class="com.weng.demo_man.action.HelloKotlinAction" text="Hello" description="Says hello"/>
+        </group>
     </actions>
 </idea-plugin>

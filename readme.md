@@ -21,6 +21,28 @@ PROJECT LOCATION: https://github.com/MutiYouth/demo_man
 * 内容见 1.4 of word "INTELIJ PLUGINS DEV.docx"... 
 
 ### inte intelij_examples
+action_basics
+* comparing_string_references_inspection
+* conditional_operator_intention
+* editor_basics
+* facet_basics
+* framework_basics
+* kotlin_demo
+* live_templates
+* max_opened_projects
+* module
+* product_specific
+* project_model
+* project_view_pane
+* project_wizard
+* psi_demo
+* run_configuration
+* settings
+* simple_language_plugin
+* theme_basics
+* _~~tool_window~~_
+* tree_structure_provider
+
 
 ### inte ros-integrate
 ### inte hatchery
