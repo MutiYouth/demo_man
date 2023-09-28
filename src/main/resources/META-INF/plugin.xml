@@ -29,7 +29,7 @@
     <extensions defaultExtensionNs="com.intellij">
         <notificationGroup id="DM Notifications" displayType="BALLOON" key="notification.group.name"/>
         <toolWindow id="DM ToolWindow" secondary="true" icon="AllIcons.Toolwindows.WebToolWindow"
-                    anchor="right" factoryClass="com.weng.demo_man.DMToolWindowFactory"/>
+                    anchor="right" factoryClass="com.weng.demo_man.tool_wnd.DMToolWindowFactory"/>
         <!--
         settings
         applicationConfigurable 没有制定 parentId="tools" ， 则在 Other Settings中。

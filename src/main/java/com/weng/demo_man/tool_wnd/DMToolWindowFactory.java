@@ -1,18 +1,13 @@
-package com.weng.demo_man;
+package com.weng.demo_man.tool_wnd;
 
-import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.LangDataKeys;
 import com.intellij.openapi.project.*;
 import com.intellij.openapi.wm.*;
-import com.intellij.psi.PsiDirectory;
 import com.intellij.ui.content.*;
 import lombok.Data;
-import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.util.Objects;
 
 public class DMToolWindowFactory implements ToolWindowFactory, DumbAware {

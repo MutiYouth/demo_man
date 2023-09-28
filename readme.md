@@ -20,6 +20,8 @@ PROJECT LOCATION: https://github.com/MutiYouth/demo_man
 * 中文字体
 * 内容见 1.4 of word "INTELIJ PLUGINS DEV.docx"... 
 
+### inte intelij_examples
+
 ### inte ros-integrate
 ### inte hatchery
 ### inte code glance pro
