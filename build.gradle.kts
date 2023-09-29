@@ -12,6 +12,7 @@ repositories {
 }
 dependencies {
     implementation("org.projectlombok:lombok:1.18.28")
+    testImplementation("junit:junit:4.13.2")
 }
 
 // Configure Gradle IntelliJ Plugin

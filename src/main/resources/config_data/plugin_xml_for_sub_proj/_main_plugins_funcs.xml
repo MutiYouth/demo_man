@@ -35,7 +35,10 @@
         <configurationType implementation="com.weng.demo_man.run_config.DemoRunConfigurationType"/>
 
         <!--     framework  -->
+        <!--     ...     -->
 
+        <!--  tree  structure provider  -->
+        <treeStructureProvider implementation="com.weng.demo_man.tree_stu_provider.TextOnlyTreeStructureProvider"/>
     </extensions>
 
     <actions>

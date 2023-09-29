@@ -22,8 +22,8 @@ PROJECT LOCATION: https://github.com/MutiYouth/demo_man
 
 ### [inte intelij_examples](https://github.com/JetBrains/intellij-sdk-code-samples)
 * action_basics
-* comparing_string_references_inspection
-* conditional_operator_intention
+* **comparing_string_references_inspection**
+* **conditional_operator_intention**
 * ~~editor_basics~~
 * ~~facet_basics~~
 * **framework_basics**
@@ -31,18 +31,14 @@ PROJECT LOCATION: https://github.com/MutiYouth/demo_man
 * ~~live_templates~~
 * max_opened_projects
 * module
-* product_specific
+* ~~product_specific~~
 * **project_model**
 * ~~project_view_pane~~
 * project_wizard
 * ~~psi_demo~~
-  - an element at the caret,
-  - containing method,
-  - containing class,
-  - local variables.
 * ~~run_configuration~~
-* settings
-* **simple_language_plugin** <br/>
+* ~~settings~~
+* **[simple_language_plugin](https://plugins.jetbrains.com/docs/intellij/custom-language-support.html)** <br/>
   Defines a new language, Simple language with support for syntax highlighting, annotations, code completion, and other features.
   * 9.29 can not be used. so many bugs.
 * theme_basics
