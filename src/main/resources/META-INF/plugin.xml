@@ -55,8 +55,11 @@
 
         <!--  live templates  -->
         <defaultLiveTemplates file="/config_data/live_templates/markdown.xml"/>
-        <liveTemplateContext implementation="com.weng.demo_man.live_templates.MarkdownContext" contextId="MARKDOWN"/>
+        <liveTemplateContext implementation="com.weng.demo_man.live_templates.MarkdownContext" contextId="_MARKDOWN"/>
         <liveTemplateMacro implementation="com.weng.demo_man.live_templates.TitleCaseMacro"/>
+
+        <!--     images project view pane    -->
+        <projectViewPane implementation="com.weng.demo_man.proj_view_pane.ImagesProjectViewPane"/>
     </extensions>
 
     <actions>
