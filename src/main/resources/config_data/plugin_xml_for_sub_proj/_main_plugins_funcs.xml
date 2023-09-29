@@ -1,0 +1,46 @@
+<!-- included by /META-INF/plugin.xml -->
+<idea-plugin>
+    <!-- Extension points defined by the plugin.
+             Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <notificationGroup id="DM Notifications" displayType="BALLOON" key="notification.group.name"/>
+        <toolWindow id="DM ToolWindow" secondary="true" icon="AllIcons.Toolwindows.WebToolWindow"
+                    anchor="right" factoryClass="com.weng.demo_man.tool_wnd.DMToolWindowFactory"/>
+
+        <!--
+        settings
+        applicationConfigurable 没有制定 parentId="tools" ， 则在 Other Settings中。
+        -->
+        <applicationConfigurable instance="com.weng.demo_man.settings.AppSettingsConfigurable"
+                                 id="com.weng.demo_man.settings.AppSettingsConfigurable"
+                                 displayName="DM: Application Settings"/>
+        <applicationService serviceImplementation="com.weng.demo_man.settings.AppSettingsState"/>
+
+        <!--  live templates  -->
+        <defaultLiveTemplates file="/config_data/live_templates/markdown.xml"/>
+        <liveTemplateContext implementation="com.weng.demo_man.live_templates.MarkdownContext" contextId="_MARKDOWN"/>
+        <liveTemplateMacro implementation="com.weng.demo_man.live_templates.TitleCaseMacro"/>
+
+        <!--     images project view pane    -->
+        <projectViewPane implementation="com.weng.demo_man.proj_view_pane.ImagesProjectViewPane"/>
+    </extensions>
+
+    <actions>
+        <action id="HelloWordAction" class="com.weng.demo_man.HelloWordAction" text="Show Hello World"
+                icon="com.weng.demo_man.ui.DMIcons.DMIcon"
+                description="Show hello world with pop window">
+            <add-to-group group-id="HelpMenu" anchor="last"/>
+        </action>
+
+
+        <action class="com.weng.demo_man.editor.PsiNavigationDemoAction" id="PsiNavigationDemo"
+                text="PSI Navigation Demo...">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+
+        <group id="DM_Plugin.GreetingMenu" text="Greeting" description="DM Greeting menu">
+            <add-to-group group-id="HelpMenu" anchor="last"/>
+            <action id="MyPlugin.Hello" class="com.weng.demo_man.action.HelloKotlinAction" text="Hello" description="Says hello"/>
+        </group>
+    </actions>
+</idea-plugin>

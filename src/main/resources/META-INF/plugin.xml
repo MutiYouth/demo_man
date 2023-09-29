@@ -1,83 +1,23 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
-<idea-plugin>
+<idea-plugin xmlns:xi="http://www.w3.org/2001/XInclude">
     <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
     <id>com.weng.demo_man</id>
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>Demo_man</name>
+    <name>Demo_Man</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
     <vendor email="support@sunslab.com" url="https://www.sunslab.com">sunslab</vendor>
 
-    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
-         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
-         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
-    <description>
-    <![CDATA[
-    DEMO MAN is a test plugin. <br>
-    <em>most HTML tags may be used</em>
-    ]]>
-    </description>
-    <change-notes>
-    <![CDATA[
-      <ul>
-        <li><b>0.1.1</b> begin to integrate intelij examples.</li>
-        <li><b>0.1.0</b> basic arch.</li>
-      </ul>
-    ]]>
-    </change-notes>
-    <!-- Text to display as company information on Settings | Plugin page -->
-    <vendor url="https://github.com/MutiYouth/demo_man">Demo Man</vendor>
+
+    <xi:include href="/config_data/plugin_xml_for_sub_proj/_main_plugins_desc.xml" xpointer="xpointer(/idea-plugin/*)"/>
+    <xi:include href="/config_data/plugin_xml_for_sub_proj/_main_plugins_dependencies.xml" xpointer="xpointer(/idea-plugin/*)"/>
+    <!-- extension and actions -->
+    <xi:include href="/config_data/plugin_xml_for_sub_proj/_main_plugins_funcs.xml" xpointer="xpointer(/idea-plugin/*)"/>
 
 
+    <!-- integrated subprojects -->
+    <xi:include href="/config_data/plugin_xml_for_sub_proj/plugin_lng_support.xml" xpointer="xpointer(/idea-plugin/*)"/>
 
-
-    <!-- Product and plugin compatibility requirements.
-         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
-    <depends>com.intellij.modules.platform</depends>
-
-    <!-- Extension points defined by the plugin.
-         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
-    <extensions defaultExtensionNs="com.intellij">
-        <notificationGroup id="DM Notifications" displayType="BALLOON" key="notification.group.name"/>
-        <toolWindow id="DM ToolWindow" secondary="true" icon="AllIcons.Toolwindows.WebToolWindow"
-                    anchor="right" factoryClass="com.weng.demo_man.tool_wnd.DMToolWindowFactory"/>
-
-        <!--
-        settings
-        applicationConfigurable 没有制定 parentId="tools" ， 则在 Other Settings中。
-        -->
-        <applicationConfigurable instance="com.weng.demo_man.settings.AppSettingsConfigurable"
-                                 id="com.weng.demo_man.settings.AppSettingsConfigurable"
-                                 displayName="DM: Application Settings"/>
-        <applicationService serviceImplementation="com.weng.demo_man.settings.AppSettingsState"/>
-
-        <!--  live templates  -->
-        <defaultLiveTemplates file="/config_data/live_templates/markdown.xml"/>
-        <liveTemplateContext implementation="com.weng.demo_man.live_templates.MarkdownContext" contextId="_MARKDOWN"/>
-        <liveTemplateMacro implementation="com.weng.demo_man.live_templates.TitleCaseMacro"/>
-
-        <!--     images project view pane    -->
-        <projectViewPane implementation="com.weng.demo_man.proj_view_pane.ImagesProjectViewPane"/>
-    </extensions>
-
-    <actions>
-        <action id="HelloWordAction" class="com.weng.demo_man.HelloWordAction" text="Show Hello World"
-                icon="com.weng.demo_man.ui.DMIcons.DMIcon"
-                description="Show hello world with pop window">
-            <add-to-group group-id="HelpMenu" anchor="last"/>
-        </action>
-
-
-        <action class="com.weng.demo_man.editor.PsiNavigationDemoAction" id="PsiNavigationDemo"
-                text="PSI Navigation Demo...">
-            <add-to-group group-id="ToolsMenu" anchor="last"/>
-        </action>
-
-        <group id="DM_Plugin.GreetingMenu" text="Greeting" description="DM Greeting menu">
-            <add-to-group group-id="HelpMenu" anchor="last"/>
-            <action id="MyPlugin.Hello" class="com.weng.demo_man.action.HelloKotlinAction" text="Hello" description="Says hello"/>
-        </group>
-    </actions>
 </idea-plugin>

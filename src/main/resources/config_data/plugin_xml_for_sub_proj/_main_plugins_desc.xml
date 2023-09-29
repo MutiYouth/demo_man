@@ -1,0 +1,24 @@
+<!-- included by /META-INF/plugin.xml -->
+<idea-plugin>
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description>
+    <![CDATA[
+        DEMO MAN is a test plugin. <br>
+        <em>most HTML tags may be used</em>
+    ]]>
+    </description>
+
+    <change-notes>
+        <![CDATA[
+        <ul>
+            <li><b>0.1.1</b> begin to integrate intelij examples.</li>
+            <li><b>0.1.0</b> basic arch.</li>
+        </ul>
+    ]]>
+    </change-notes>
+    <!-- Text to display as company information on Settings | Plugin page -->
+    <vendor url="https://github.com/MutiYouth/demo_man">Demo Man</vendor>
+
+</idea-plugin>

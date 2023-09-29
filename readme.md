@@ -42,7 +42,9 @@ PROJECT LOCATION: https://github.com/MutiYouth/demo_man
   - local variables.
 * run_configuration
 * settings
-* simple_language_plugin
+* simple_language_plugin <br/>
+  Defines a new language, Simple language with support for syntax highlighting, annotations, code completion, and other features.
+  
 * theme_basics
 * _~~tool_window~~_
 * tree_structure_provider

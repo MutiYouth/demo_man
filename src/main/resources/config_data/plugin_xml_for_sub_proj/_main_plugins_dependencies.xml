@@ -1,0 +1,6 @@
+    <!-- included by /META-INF/plugin.xml -->
+<idea-plugin>
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+</idea-plugin>
