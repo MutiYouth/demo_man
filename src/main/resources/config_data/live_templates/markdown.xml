@@ -1,4 +1,4 @@
-<templateSet group="_Markdown">
+<templateSet group="_MARKDOWN">
     <template name="md_1"
               value="[$TEXT$]($LINK$)$END$"
               description="SDK: New link reference"
@@ -7,7 +7,7 @@
         <variable name="TEXT" expression="" defaultValue="" alwaysStopAt="true"/>
         <variable name="LINK" expression="complete()" defaultValue="" alwaysStopAt="true"/>
         <context>
-            <option name="MARKDOWN" value="true"/>
+            <option name="_MARKDOWN" value="true"/>
         </context>
     </template>
     <template name="md_2"
@@ -17,7 +17,7 @@
               toShortenFQNames="false">
         <variable name="TITLE" expression="titleCase(SELECTION)" defaultValue="the quick brown fox" alwaysStopAt="true" />
         <context>
-            <option name="MARKDOWN" value="true" />
+            <option name="_MARKDOWN" value="true" />
         </context>
     </template>
 </templateSet>

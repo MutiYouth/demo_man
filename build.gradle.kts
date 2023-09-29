@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.weng"
-version = "0.1-SNAPSHOT"
+version = "0.1.1-SNAPSHOT"
 
 repositories {
     mavenCentral()

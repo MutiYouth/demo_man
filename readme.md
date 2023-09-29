@@ -17,7 +17,7 @@ PROJECT LOCATION: https://github.com/MutiYouth/demo_man
 * Editor
 * runConfig
 * ~~Icons~~
-* 中文字体
+* ~~中文字体~~
 * 内容见 1.4 of word "INTELIJ PLUGINS DEV.docx"... 
 
 ### [inte intelij_examples](https://github.com/JetBrains/intellij-sdk-code-samples)

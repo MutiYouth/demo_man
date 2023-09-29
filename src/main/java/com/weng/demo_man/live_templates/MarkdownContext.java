@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 public class MarkdownContext extends TemplateContextType {
 
 	protected MarkdownContext() {
-		super("_Markdown",".md");
+		super("_MARKDOWN",".md");
 	}
 
 	@Override
