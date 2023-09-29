@@ -25,4 +25,10 @@ PROJECT LOCATION: https://github.com/MutiYouth/demo_man
 ### inte ros-integrate
 ### inte hatchery
 ### inte code glance pro
+将 https://github.com/Nasller/CodeGlancePro checkout后， 分别将对应的代码更新至如下目录下：
+* `src/main/kotlin` -- > `src/main/kotlin`
+* `src/main/resources` -- > `src/main/resources/config_data/inte_cgp`
+* Update `gradle/libs.version.toml`
+* Update `build.gradle.kts`
+* Update `gradle.properties`
 ### inte code count
