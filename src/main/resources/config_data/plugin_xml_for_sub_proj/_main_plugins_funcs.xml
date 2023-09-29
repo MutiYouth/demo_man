@@ -26,6 +26,9 @@
 
         <!--     editor_basics     -->
         <typedHandler implementation="com.weng.demo_man.editor.MyTypedHandler"/>
+
+        <!--     facet， Register the custom facet extension -->
+        <facetType implementation="com.weng.demo_man.facet.DemoFacetType"/>
     </extensions>
 
     <actions>

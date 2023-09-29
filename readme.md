@@ -25,7 +25,7 @@ PROJECT LOCATION: https://github.com/MutiYouth/demo_man
 * comparing_string_references_inspection
 * conditional_operator_intention
 * ~~editor_basics~~
-* facet_basics
+* ~~facet_basics~~
 * framework_basics
 * ~~kotlin_demo~~
 * ~~live_templates~~
