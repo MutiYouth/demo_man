@@ -33,9 +33,13 @@ PROJECT LOCATION: https://github.com/MutiYouth/demo_man
 * module
 * product_specific
 * project_model
-* project_view_pane
+* ~~project_view_pane~~
 * project_wizard
-* psi_demo
+* ~~psi_demo~~
+  - an element at the caret,
+  - containing method,
+  - containing class,
+  - local variables.
 * run_configuration
 * settings
 * simple_language_plugin

@@ -68,6 +68,13 @@
                 description="Show hello world with pop window">
             <add-to-group group-id="HelpMenu" anchor="last"/>
         </action>
+
+
+        <action class="com.weng.demo_man.editor.PsiNavigationDemoAction" id="PsiNavigationDemo"
+                text="PSI Navigation Demo...">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+
         <group id="DM_Plugin.GreetingMenu" text="Greeting" description="DM Greeting menu">
             <add-to-group group-id="HelpMenu" anchor="last"/>
             <action id="MyPlugin.Hello" class="com.weng.demo_man.action.HelloKotlinAction" text="Hello" description="Says hello"/>
