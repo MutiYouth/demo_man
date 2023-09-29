@@ -29,6 +29,10 @@
 
         <!--     facet， Register the custom facet extension -->
         <facetType implementation="com.weng.demo_man.facet.DemoFacetType"/>
+
+
+        <!--     run configuration  -->
+        <configurationType implementation="com.weng.demo_man.run_config.DemoRunConfigurationType"/>
     </extensions>
 
     <actions>
