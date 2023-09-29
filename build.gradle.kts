@@ -21,6 +21,10 @@ intellij {
     type.set("IC") // Target IDE Platform
 
     plugins.set(listOf(/* Plugin Dependencies */))
+
+    // type.set("PY")
+    // plugins.set(listOf("Pythonid"))
+    // downloadSources.set(false)
 }
 
 tasks {

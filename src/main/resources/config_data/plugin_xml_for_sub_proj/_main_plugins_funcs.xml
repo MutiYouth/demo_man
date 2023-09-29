@@ -33,6 +33,9 @@
 
         <!--     run configuration  -->
         <configurationType implementation="com.weng.demo_man.run_config.DemoRunConfigurationType"/>
+
+        <!--     framework  -->
+
     </extensions>
 
     <actions>
@@ -68,5 +71,14 @@
             <keyboard-shortcut keymap="$default" first-keystroke="control alt G"/>
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
         </action>
+
+        <!--  product specific -->
+        <group id="org.intellij.sdk.pycharm.NewGroupedActions" text="DM: Plugin" popup="true">
+            <add-to-group group-id="MainMenu" anchor="last"/>
+            <!-- Add a single action to the new group -->
+            <action id="org.intellij.sdk.pycharm.PopupDialogAction" class="com.weng.demo_man.PopupDialogAction"
+                    text="DM, Pop a Dialog" description="SDK PyCharm basics example" icon="com.weng.demo_man.ui.DMIcons.DMIcon">
+            </action>
+        </group>
     </actions>
 </idea-plugin>
