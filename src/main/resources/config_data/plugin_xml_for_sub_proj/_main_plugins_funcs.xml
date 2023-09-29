@@ -23,6 +23,9 @@
 
         <!--     images project view pane    -->
         <projectViewPane implementation="com.weng.demo_man.proj_view_pane.ImagesProjectViewPane"/>
+
+        <!--     editor_basics     -->
+        <typedHandler implementation="com.weng.demo_man.editor.MyTypedHandler"/>
     </extensions>
 
     <actions>
@@ -42,5 +45,21 @@
             <add-to-group group-id="HelpMenu" anchor="last"/>
             <action id="MyPlugin.Hello" class="com.weng.demo_man.action.HelloKotlinAction" text="Hello" description="Says hello"/>
         </group>
+
+        <!--     editor_basics     -->
+        <action id="EditorBasics.EditorIllustrationAction" class="com.weng.demo_man.editor.EditorIllustrationAction"
+                text="Editor Replace Text" description="Replaces selected text with 'Replacement'." icon="com.weng.demo_man.ui.DMIcons.DMIcon">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+        <action id="EditorBasics.EditorHandlerIllustration" class="com.weng.demo_man.editor.EditorHandlerIllustration"
+                text="Editor Add Caret" description="Adds a second caret below the existing one." icon="com.weng.demo_man.ui.DMIcons.DMIcon">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+        <!-- Place this entry first in the popup menu; it's always enabled if a project and editor are open -->
+        <action id="EditorBasics.LogicalPositionIllustration" class="com.weng.demo_man.editor.EditorAreaIllustration"
+                text="Caret Position" description="Reports information about the caret position." icon="com.weng.demo_man.ui.DMIcons.DMIcon">
+            <keyboard-shortcut keymap="$default" first-keystroke="control alt G"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
     </actions>
 </idea-plugin>

@@ -18,6 +18,5 @@
 
 
     <!-- integrated subprojects -->
-    <xi:include href="/config_data/plugin_xml_for_sub_proj/plugin_lng_support.xml" xpointer="xpointer(/idea-plugin/*)"/>
 
 </idea-plugin>

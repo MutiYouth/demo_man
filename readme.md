@@ -24,7 +24,7 @@ PROJECT LOCATION: https://github.com/MutiYouth/demo_man
 * action_basics
 * comparing_string_references_inspection
 * conditional_operator_intention
-* editor_basics
+* ~~editor_basics~~
 * facet_basics
 * framework_basics
 * ~~kotlin_demo~~
@@ -44,7 +44,7 @@ PROJECT LOCATION: https://github.com/MutiYouth/demo_man
 * settings
 * simple_language_plugin <br/>
   Defines a new language, Simple language with support for syntax highlighting, annotations, code completion, and other features.
-  
+  * 9.29 can not be used. so many bugs.
 * theme_basics
 * _~~tool_window~~_
 * tree_structure_provider
