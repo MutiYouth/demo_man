@@ -1,5 +1,5 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
-<idea-plugin>
+<idea-plugin xmlns:xi="http://www.w3.org/2001/XInclude">
     <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
     <id>com.weng.demo_man</id>
 
@@ -14,7 +14,7 @@
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description>
-    <![CDATA[
+        <![CDATA[
     DEMO MAN is a test plugin. <br>
     <em>most HTML tags may be used</em>
     ]]>
@@ -46,4 +46,7 @@
             <add-to-group group-id="HelpMenu" anchor="last"/>
         </action>
     </actions>
+
+    <!--     integrated plugins       -->
+    <xi:include href="/config_data/inte_cgp/inte_cgp.xml" xpointer="xpointer(/idea-plugin/*)"/>
 </idea-plugin>

@@ -1,0 +1,31 @@
+<!-- included by /META-INF/plugin.xml -->
+<idea-plugin>
+    <depends>com.intellij.modules.lang</depends>
+
+    <applicationListeners>
+        <listener topic="com.weng.demo_man.codeglance.config.SettingsChangeListener" class="com.weng.demo_man.codeglance.GlobalSettingsChangeListener"/>
+        <listener topic="com.intellij.ide.ui.LafManagerListener" class="com.weng.demo_man.codeglance.GlobalLafManagerListener"/>
+    </applicationListeners>
+
+    <actions>
+        <action id="CodeGlancePro.toggle" text="Toggle Current CodeGlance" class="com.weng.demo_man.codeglance.actions.ToggleVisibleAction"
+                description="Toggles current CodeGlance on and off">
+            <keyboard-shortcut first-keystroke="control shift G" keymap="$default"/>
+        </action>
+        <action id="CodeGlancePro.disable" text="Toggle All CodeGlance" class="com.weng.demo_man.codeglance.actions.DisableByDefaultAction"
+                description="Toggles all CodeGlance on and off">
+            <keyboard-shortcut first-keystroke="control alt shift G" keymap="$default"/>
+        </action>
+    </actions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <editorFactoryListener implementation="com.weng.demo_man.codeglance.EditorPanelInjector"/>
+        <diff.DiffExtension implementation="com.weng.demo_man.codeglance.DiffEditorPanelInjector"/>
+        <applicationConfigurable instance="com.weng.demo_man.codeglance.config.CodeGlanceConfigurable"/>
+        <iw.actionProvider implementation="com.weng.demo_man.codeglance.extensions.GlanceVisibleActionProvider"/>
+        <colorSettingsPage implementation="com.weng.demo_man.codeglance.config.CodeGlanceColorsPage"/>
+        <additionalTextAttributes scheme="Default" file="/config_data/inte_cgp/colorSchemes/color-default.xml"/>
+        <additionalTextAttributes scheme="Darcula" file="/config_data/inte_cgp/colorSchemes/color-default-darcula.xml"/>
+        <highlightVisitor implementation="com.weng.demo_man.codeglance.extensions.visitor.MarkCommentVisitor"/>
+    </extensions>
+</idea-plugin>

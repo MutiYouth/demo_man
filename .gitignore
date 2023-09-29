@@ -22,3 +22,7 @@ gradlew
 gradlew.bat
 .run
 gradle
+
+plugins*
+config*
+
