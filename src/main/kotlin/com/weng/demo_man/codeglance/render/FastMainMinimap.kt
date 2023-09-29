@@ -222,7 +222,7 @@ class FastMainMinimap(glancePanel: GlancePanel, virtualFile: VirtualFile?) : Bas
 				//this is render document
 				val line = myDocument.getLineNumber(foldStartOffset) - 1 + (heightLine / config.pixelsPerLine)
 				val foldEndOffset = foldRegion.endOffset.run {
-					if(DocumentUtil.isLineEmpty(line, myDocument)) {
+					if(DocumentUtil.isLineEmpty(editor.document, line)) {
 						val lineEndOffset = myDocument.getLineEndOffset(line)
 						if(this < lineEndOffset) this else lineEndOffset
 					}else this
@@ -480,7 +480,7 @@ class FastMainMinimap(glancePanel: GlancePanel, virtualFile: VirtualFile?) : Bas
 		glancePanel.markCommentState.markCommentHighlightChange(highlighter, true)
 	}
 
-	override fun afterRemoved(highlighter: RangeHighlighterEx) = updateRangeHighlight(highlighter)
+	fun afterRemoved(highlighter: RangeHighlighterEx) = updateRangeHighlight(highlighter)
 
 	private fun updateRangeHighlight(highlighter: RangeHighlighterEx) {
 		EdtInvocationManager.invokeLaterIfNeeded {
@@ -500,7 +500,7 @@ class FastMainMinimap(glancePanel: GlancePanel, virtualFile: VirtualFile?) : Bas
 
 	/** PropertyChangeListener */
 	override fun propertyChange(evt: PropertyChangeEvent) {
-		if (EditorEx.PROP_HIGHLIGHTER != evt.propertyName) return
+		if (EditorEx.PROP_INSERT_MODE != evt.propertyName) return
 		resetMinimapData()
 	}
 

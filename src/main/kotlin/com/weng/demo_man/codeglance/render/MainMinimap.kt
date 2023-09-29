@@ -145,7 +145,7 @@ class MainMinimap(glancePanel: GlancePanel, virtualFile: VirtualFile?): BaseMini
 						Range(y,editor.document.getLineNumber(hlIter.start) * config.pixelsPerLine + skipY)))
 					//this is render document
 					val line = startLineNumber - 1 + (heightLine / config.pixelsPerLine)
-					text.subSequence(start, if(DocumentUtil.isValidLine(line,editor.document)){
+					text.subSequence(start, if(DocumentUtil.isLineEmpty(editor.document, line)){
 						val lineEndOffset = editor.document.getLineEndOffset(line)
 						if(endOffset < lineEndOffset) endOffset else lineEndOffset
 					}else endOffset).forEach(moveAndRenderChar)
@@ -304,7 +304,7 @@ class MainMinimap(glancePanel: GlancePanel, virtualFile: VirtualFile?): BaseMini
 		glancePanel.markCommentState.markCommentHighlightChange(highlighter, true)
 	}
 
-	override fun afterRemoved(highlighter: RangeHighlighterEx) = updateRangeHighlight(highlighter)
+	fun afterRemoved(highlighter: RangeHighlighterEx) = updateRangeHighlight(highlighter)
 
 	private fun updateRangeHighlight(highlighter: RangeHighlighterEx) {
 		if (editor.document.isInBulkUpdate || editor.inlayModel.isInBatchMode || editor.foldingModel.isInBatchFoldingOperation) return
@@ -333,7 +333,7 @@ class MainMinimap(glancePanel: GlancePanel, virtualFile: VirtualFile?): BaseMini
 
 	/** PropertyChangeListener */
 	override fun propertyChange(evt: PropertyChangeEvent) {
-		if (EditorEx.PROP_HIGHLIGHTER != evt.propertyName || evt.newValue is EmptyEditorHighlighter) return
+		if (EditorEx.PROP_INSERT_MODE != evt.propertyName || evt.newValue is EmptyEditorHighlighter) return
 		updateMinimapImage()
 	}
 
