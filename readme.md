@@ -23,6 +23,7 @@ PROJECT LOCATION: https://github.com/MutiYouth/demo_man
 ### inte intelij_examples
 
 ### inte ros-integrate
-### inte hatchery
+### inte [hatchery](https://github.com/duckietown/hatchery)
+* [hatchery usage](https://www.youtube.com/watch?v=OU1_tqZs9EM)
 ### inte code glance pro
 ### inte code count

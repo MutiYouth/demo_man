@@ -1,0 +1,116 @@
+<!-- included by /META-INF/plugin.xml -->
+<idea-plugin>
+    <idea-version since-build="213.5744.223"/>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.clion</depends>
+    <depends>org.jetbrains.plugins.yaml</depends>
+
+
+    <resource-bundle>HatcheryBundle</resource-bundle>
+    <application-components>
+        <component>
+            <implementation-class>com.weng.demo_man.settings.RosConfig</implementation-class>
+        </component>
+        <component>Catkin.kt
+            CMakeLists.kt
+            ProjectUtils.kt
+            RosCommonProgramRunConfigurationParameters
+            <implementation-class>com.weng.demo_man.achdjian.data.RosEnvironments</implementation-class>
+        </component>
+        <component>
+            <implementation-class>com.weng.demo_man.achdjian.data.RosCustomVersion</implementation-class>
+        </component>
+        <component>
+            <implementation-class>com.weng.demo_man.achdjian.settings.RosSettings</implementation-class>
+        </component>
+    </application-components>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <fileTypeFactory implementation="com.weng.demo_man.xacro.XacroFileTypeFactory"/>
+        <fileTypeFactory implementation="com.weng.demo_man.roslaunch.RosLaunchFileFactory"/>
+        <fileTypeFactory implementation="com.weng.demo_man.rosmanifest.RosManifestFileFactory"/>
+        <fileTypeFactory implementation="com.weng.demo_man.rviz.RVizFileFactory"/>
+        <fileTypeFactory implementation="com.weng.demo_man.rosinterface.RosInterfaceFileFactory"/>
+        <psi.fileReferenceHelper implementation="com.weng.demo_man.rosmanifest.RosManifestFileReferenceHelper"/>
+
+        <lang.parserDefinition language="RosInterface" implementationClass="com.weng.demo_man.rosinterface.RosInterfaceParserDefinition"/>
+        <lang.syntaxHighlighterFactory language="RosInterface" implementationClass="com.weng.demo_man.rosinterface.RosInterfaceSyntaxHighlighterFactory"/>
+
+        <psi.referenceContributor language="XML" implementation="com.weng.demo_man.rosmanifest.RosManifestReferenceContributor"/>
+        <psi.referenceContributor language="XML" implementation="com.weng.demo_man.roslaunch.RosLaunchReferenceContributor"/>
+
+        <xml.schemaProvider implementation="com.weng.demo_man.roslaunch.RosLaunchSchemaProvider"/>
+        <xml.schemaProvider implementation="com.weng.demo_man.rosmanifest.RosManifestSchemaProvider"/>
+
+        <codeInsight.lineMarkerProvider language="XML" implementationClass="com.weng.demo_man.rosmanifest.RosManifestLineMarkerProvider"/>
+        <codeInsight.lineMarkerProvider language="XML" implementationClass="com.weng.demo_man.roslaunch.RosLaunchLineMarkerProvider"/>
+
+        <iconProvider implementation="com.weng.demo_man.catkin.CatkinIconProvider" order="first"/>
+        <iconProvider implementation="com.weng.demo_man.python.PythonSourcesDirectoryIconProvider" order="first"/>
+        <iconProvider implementation="com.weng.demo_man.ros.WorkspaceIconProvider" order="first"/>
+        <iconProvider implementation="com.weng.demo_man.ros.LaunchDirIconProvider" order="first"/>
+
+        <!--        <configurationType implementation="com.weng.demo_man.roslaunch.runconfig.RosLaunchRunConfigType"/>-->
+        <!--        <runLineMarkerContributor language="XML" implementationClass="com.weng.demo_man.roslaunch.runconfig.RosLaunchRunLineMarkerContributor"/>-->
+        <!--        <runConfigurationProducer implementation="com.weng.demo_man.roslaunch.runconfig.RosLaunchRunConfigProducer"/>-->
+
+        <moduleType id="DEMO_MODULE_TYPE" implementationClass="com.weng.demo_man.modules.DemoModuleType"/>
+
+        <applicationService serviceImplementation="com.weng.demo_man.settings.RosConfig" overrides="false"/>
+
+        <configurationType implementation="com.weng.demo_man.achdjian.node.NodeConfigurationTypeCMake" id="com.weng.demo_man.achdjian.node.conf.type"/>
+
+        <applicationConfigurable order="last" id="ROS.plugin.achdjian.it"
+                                 instance="com.weng.demo_man.achdjian.settings.RosSettings"
+                                 displayName="ROS config" groupId="build"/>
+        <configurationType implementation="com.weng.demo_man.achdjian.launch.LaunchConfigurationType" id="com.weng.demo_man.achdjian.launch.conf.type"/>
+        <directoryProjectGenerator implementation="com.weng.demo_man.achdjian.generator.RosNodeGenerator"/>
+
+    </extensions>
+
+    <actions>
+        <action class="com.weng.demo_man.roslaunch.RosLaunchRunTargetAction"/>
+        <group id="com.weng.demo_man.RosActions" text="ROS" popup="true">
+            <add-to-group group-id="MainMenu" relative-to-action="HelpMenu" anchor="before"/>
+        </group>
+        <action id="rqt_msg" class="com.weng.demo_man.rqt.RqtAction" text="rqt__msg" description="rqt_msg" icon="/config_data/inte_hatchery/icons/rqtmsg.svg">
+            <add-to-group group-id="ToolbarRunGroup" anchor="first"/>
+            <add-to-group group-id="com.weng.demo_man.RosActions"/>
+        </action>
+        <action id="rqt_bag" class="com.weng.demo_man.rqt.RqtAction" text="rqt__bag" description="rqt_bag" icon="/config_data/inte_hatchery/icons/rqtbag.svg">
+            <add-to-group group-id="ToolbarRunGroup" anchor="first"/>
+            <add-to-group group-id="com.weng.demo_man.RosActions"/>
+        </action>
+        <action id="rqt_dep" class="com.weng.demo_man.rqt.RqtAction" text="rqt__dep" description="rqt_dep" icon="/config_data/inte_hatchery/icons/links.svg">
+            <add-to-group group-id="ToolbarRunGroup" anchor="first"/>
+            <add-to-group group-id="com.weng.demo_man.RosActions"/>
+        </action>
+        <action id="rqt_graph" class="com.weng.demo_man.rqt.RqtAction" text="rqt__graph" description="rqt_graph" icon="/config_data/inte_hatchery/icons/rqtgraph.svg">
+            <add-to-group group-id="ToolbarRunGroup" anchor="first"/>
+            <add-to-group group-id="com.weng.demo_man.RosActions"/>
+        </action>
+        <action id="rqt_image_view" class="com.weng.demo_man.rqt.RqtAction" text="rqt__image__view" description="rqt_image_view"
+                icon="/config_data/inte_hatchery/icons/rqtimage.svg">
+            <add-to-group group-id="ToolbarRunGroup" anchor="first"/>
+            <add-to-group group-id="com.weng.demo_man.RosActions"/>
+        </action>
+        <action id="rqt_plot" class="com.weng.demo_man.rqt.RqtAction" text="rqt__plot" description="rqt_plot" icon="/config_data/inte_hatchery/icons/rqtbar.svg">
+            <add-to-group group-id="ToolbarRunGroup" anchor="first"/>
+            <add-to-group group-id="com.weng.demo_man.RosActions"/>
+        </action>
+        <action id="gazebo" class="com.weng.demo_man.rqt.RqtAction" text="gazebo" description="gazebo" icon="/config_data/inte_hatchery/icons/gazebo.svg">
+            <add-to-group group-id="ToolbarRunGroup" anchor="first"/>
+            <add-to-group group-id="com.weng.demo_man.RosActions"/>
+        </action>
+
+        <group id="ROS.WelcomeScreen.Actions">
+            <action id="ImportROSWorkspace" class="com.weng.demo_man.achdjian.importer.ImporterRosWorkspaceAction" text="Import ROS Workspace"/>
+            <add-to-group group-id="WelcomeScreen.QuickStart" anchor="after" relative-to-action="ImportCMakeProject"/>
+        </group>
+
+        <group id="ROS.FileMenu.Before">
+            <action id="CPP.ImportROSWorkspace" class="com.weng.demo_man.achdjian.importer.ImporterRosWorkspaceAction" text="Import ROS Workspace ... "/>
+            <add-to-group group-id="FileOpenGroup" anchor="after" relative-to-action="CPP.ImportCMakeProject"/>
+        </group>
+    </actions>
+</idea-plugin>
