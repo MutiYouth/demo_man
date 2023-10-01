@@ -3,7 +3,8 @@ package com.weng.demo_man.achdjian.data
 import com.intellij.openapi.components.*
 
 @State(name = "ROS.configuration", storages = [(Storage("ROS.xml"))])
-data class RosCustomVersion(var versions: MutableMap<String, String> = HashMap()) : PersistentStateComponent<RosCustomVersion> {
+data class RosCustomVersion(var versions: MutableMap<String, String> = HashMap()) :
+    PersistentStateComponent<RosCustomVersion> {
     var defaultVersionToRemove = HashSet<String>()
 
     override fun getState() = this

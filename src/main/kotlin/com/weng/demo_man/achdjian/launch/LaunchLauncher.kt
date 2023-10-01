@@ -6,7 +6,8 @@ import com.intellij.execution.runners.ExecutionEnvironment
 import com.intellij.openapi.diagnostic.Logger
 import com.weng.demo_man.achdjian.utils.*
 
-class LaunchLauncher(private val launchConfiguration: LaunchConfiguration, environment: ExecutionEnvironment) : CommandLineState(environment) {
+class LaunchLauncher(private val launchConfiguration: LaunchConfiguration, environment: ExecutionEnvironment) :
+    CommandLineState(environment) {
     companion object {
         private val LOG = Logger.getInstance(LaunchLauncher::class.java)
     }

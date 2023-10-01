@@ -23,7 +23,8 @@
     <xs:simpleType name="EmailType">
         <xs:annotation>
             <xs:documentation>
-                A valid email address must follow several complex rules (see https://en.wikipedia.org/wiki/Email_address). For ROS packages only a few are enforced and not the full character set is supported.
+                A valid email address must follow several complex rules (see https://en.wikipedia.org/wiki/Email_address). For ROS packages only a few are enforced and
+                not the full character set is supported.
             </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:token">
@@ -110,7 +111,9 @@
                 <xs:element name="name">
                     <xs:annotation>
                         <xs:documentation>
-                            The package name should be unique within the ROS community. It may differ from the folder name into which it is checked out, but that is not recommended. It must start with a lower-case letter and consist of only lower-case letters, numbers and underscores. It must not have two consecutive underscores.
+                            The package name should be unique within the ROS community. It may differ from the folder name into which it is checked out, but that is not
+                            recommended. It must start with a lower-case letter and consist of only lower-case letters, numbers and underscores. It must not have two
+                            consecutive underscores.
                         </xs:documentation>
                     </xs:annotation>
                     <xs:simpleType>

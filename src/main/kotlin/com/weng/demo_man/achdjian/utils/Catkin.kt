@@ -6,7 +6,8 @@ import java.nio.file.*
 
 fun catkinFindLibexec(packageName: String, env: Map<String, String>): List<Path> {
     val log = Logger.getInstance("#com.weng.demo_man.achdjian.utils.Catkin.catkinFindLibexec")
-    val processBuilder = ProcessBuilder().command("catkin_find", "--first-only", "--without-underlays", "--libexec", packageName)
+    val processBuilder =
+        ProcessBuilder().command("catkin_find", "--first-only", "--without-underlays", "--libexec", packageName)
     processBuilder.environment().putAll(env)
     val process = processBuilder.start()
 

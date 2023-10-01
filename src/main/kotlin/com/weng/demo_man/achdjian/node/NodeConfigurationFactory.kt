@@ -15,7 +15,8 @@ object IDs {
 }
 
 
-class NodeConfigurationFactory(private val configurationType: NodeConfigurationTypeCMake) : ConfigurationFactory(configurationType) {
+class NodeConfigurationFactory(private val configurationType: NodeConfigurationTypeCMake) :
+    ConfigurationFactory(configurationType) {
     override fun createTemplateConfiguration(project: Project): RunConfiguration {
         return NodeConfiguration(project, configurationType.confFactory, "ROS")
     }
@@ -24,12 +25,16 @@ class NodeConfigurationFactory(private val configurationType: NodeConfigurationT
     override fun getId() = IDs.FACTORY
 }
 
-class NodeConfigurationTypeCMake : CMakeRunConfigurationType(IDs.ID, IDs.FACTORY, IDs.DISPLAY_NAME, IDs.DESCRIPTION, ICON_NODE) {
+class NodeConfigurationTypeCMake :
+    CMakeRunConfigurationType(IDs.ID, IDs.FACTORY, IDs.DISPLAY_NAME, IDs.DESCRIPTION, ICON_NODE) {
     override fun createEditor(project: Project): SettingsEditor<out CMakeAppRunConfiguration> {
         return NodeRunEditorCMake(project, CMakeBuildConfigurationHelper(project))
     }
 
-    override fun createRunConfiguration(project: Project, configurationFactory: ConfigurationFactory): CMakeAppRunConfiguration {
+    override fun createRunConfiguration(
+        project: Project,
+        configurationFactory: ConfigurationFactory
+    ): CMakeAppRunConfiguration {
         return NodeConfiguration(project, confFactory, "ROS")
     }
 

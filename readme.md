@@ -20,10 +20,10 @@ PROJECT LOCATION: https://github.com/MutiYouth/demo_man
 * 中文字体
 * 内容见 1.4 of word "INTELIJ PLUGINS DEV.docx"... 
 
-### inte intelij_examples
+### ~~inte intelij_examples~~
 
 ### inte ros-integrate
-### inte [hatchery](https://github.com/duckietown/hatchery)
+### ~~inte [hatchery](https://github.com/duckietown/hatchery)~~
 * [hatchery usage](https://www.youtube.com/watch?v=OU1_tqZs9EM)
-### inte code glance pro
+### ~~inte code glance pro~~
 ### inte code count

@@ -30,7 +30,7 @@ version = "0.3.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
-    jcenter()
+    // jcenter()
     // https://raw.githubusercontent.com/rosjava/rosjava_mvn_repo/master
     maven("https://github.com/rosjava/rosjava_mvn_repo/master")
 
@@ -46,11 +46,19 @@ dependencies {
 
     // Useful ROS Dependencies
     // https://mvnrepository.com/artifact/org.apache.commons/com.springsource.org.apache.commons.codec
-    implementation("org.apache.commons:com.springsource.org.apache.commons.codec:1.7.0")
+    // implementation("org.apache.commons:com.springsource.org.apache.commons.codec:1.7.0")
+
+
+
     // https://github.com/rosjava/rosjava_core/tags
-    testImplementation("org.ros.rosjava_core:rosjava:0.3.6")
-    testImplementation("org.ros.rosjava_messages:std_msgs:0.5.11")
-    testImplementation("org.ros.rosjava_bootstrap:message_generation:0.3.3")
+    // https://github.com/rosjava/rosjava_mvn_repo/tree/master
+    // testImplementation:为test源集添加依赖项
+    // testImplementation("org.ros.rosjava_core:rosjava:0.3.6")
+    // testImplementation("org.ros.rosjava_messages:std_msgs:0.5.11")
+    // testImplementation("org.ros.rosjava_bootstrap:message_generation:0.3.3")
+    implementation(files("plugins/demo_man/lib/rosjava-0.3.6.jar"))
+    implementation(files("plugins/demo_man/lib/std_msgs-0.5.11.jar"))
+    implementation(files("plugins/demo_man/lib/message_generation-0.3.3.jar"))
 }
 
 
@@ -117,11 +125,13 @@ tasks {
         changeNotes = "Updates demo_man(integration Hatchery to work on 2023+. Mostly in maintenance mode now. ) "
     }
 
-    named("buildPlugin") {
-        dependsOn("test")
-    }
+    // 需在合适的环境下，开启buildPlugin，并进行测试。
+    // named("buildPlugin") {
+    //     dependsOn("test")
+    // }
 
     withType<Zip> {
+        // 在plugins/demo_man/lib下生成
         archiveFileName = "demo_man.zip"
     }
 
@@ -145,14 +155,14 @@ tasks {
     findByName("buildSearchableOptions")?.enabled = false
 
     generateLexer {
-        sourceFile = File("src/main/grammars/ROSInterface.flex")
+        sourceFile = File("src/main/resources/config_data/inte_hatchery/grammars/ROSInterface.flex")
         targetDir = "src/main/java/com/weng/demo_man/rosinterface"
         targetClass = "ROSInterfaceLexer"
         purgeOldFiles = true
     }
 
     generateParser {
-        sourceFile = File("src/main/grammars/ROSInterface.bnf")
+        sourceFile = File("src/main/resources/config_data/inte_hatchery/grammars/ROSInterface.bnf")
         targetRoot = "src/main/java"
         pathToParser = "/com/weng/demo_man/parser/ROSInterfaceParser.java"
         pathToPsiRoot = "/com/weng/demo_man/psi"

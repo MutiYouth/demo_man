@@ -40,12 +40,14 @@ class Row(val text: String? = null) {
         component = textArea
     }
 
-    fun textFieldWithHistoryWithBrowseButton(project: Project?,
-                                             value: String?,
-                                             browseDialogTitle: String,
-                                             fileChooserDescriptor: FileChooserDescriptor,
-                                             historyProvider: (() -> List<String>)? = null,
-                                             fileChosen: ((chosenFile: VirtualFile) -> String)? = null) {
+    fun textFieldWithHistoryWithBrowseButton(
+        project: Project?,
+        value: String?,
+        browseDialogTitle: String,
+        fileChooserDescriptor: FileChooserDescriptor,
+        historyProvider: (() -> List<String>)? = null,
+        fileChosen: ((chosenFile: VirtualFile) -> String)? = null
+    ) {
         val textWithBrowserButton = TextFieldWithHistoryWithBrowseButton()
         val textFieldWithHistory = textWithBrowserButton.childComponent
         textFieldWithHistory.setHistorySize(-1)
@@ -54,13 +56,13 @@ class Row(val text: String? = null) {
             SwingHelper.addHistoryOnExpansion(textFieldWithHistory, historyProvider)
         }
         installFileCompletionAndBrowseDialog(
-                project,
-                textWithBrowserButton,
-                textWithBrowserButton.childComponent.textEditor,
-                browseDialogTitle,
-                fileChooserDescriptor = fileChooserDescriptor,
-                textComponentAccessor = TextComponentAccessors.TEXT_FIELD_WITH_HISTORY_WHOLE_TEXT,
-                fileChosen = fileChosen
+            project,
+            textWithBrowserButton,
+            textWithBrowserButton.childComponent.textEditor,
+            browseDialogTitle,
+            fileChooserDescriptor = fileChooserDescriptor,
+            textComponentAccessor = TextComponentAccessors.TEXT_FIELD_WITH_HISTORY_WHOLE_TEXT,
+            fileChosen = fileChosen
         )
         textWithBrowserButton.let { textWithBrowserButton.text = value }
         component = textWithBrowserButton

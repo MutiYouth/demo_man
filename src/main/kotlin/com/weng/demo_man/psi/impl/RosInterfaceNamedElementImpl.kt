@@ -7,24 +7,24 @@ import com.weng.demo_man.psi.*
 import com.weng.demo_man.psi.RosInterfaceTypes.*
 
 open class RosInterfaceNamedElementImpl(node: ASTNode) : ASTWrapperPsiElement(node), RosInterfaceNamedElement {
-  override fun getType() = node.findChildByType(TYPE)?.text
+    override fun getType() = node.findChildByType(TYPE)?.text
 
-  override fun getKey() = node.findChildByType(KEY)?.text?.replace("\\\\ ".toRegex(), " ")
+    override fun getKey() = node.findChildByType(KEY)?.text?.replace("\\\\ ".toRegex(), " ")
 
-  override fun getValue() = node.findChildByType(VALUE)?.text
+    override fun getValue() = node.findChildByType(VALUE)?.text
 
-  override fun getName() = getKey()
+    override fun getName() = getKey()
 
-  override fun setName(newName: String): PsiElement {
-    val keyNode = node.findChildByType(KEY)
-    if (keyNode != null) {
-      val property = RosInterfaceElementFactory.createProperty(project, newName)
-      val newKeyNode = property.firstChild.node
-      node.replaceChild(keyNode, newKeyNode)
+    override fun setName(newName: String): PsiElement {
+        val keyNode = node.findChildByType(KEY)
+        if (keyNode != null) {
+            val property = RosInterfaceElementFactory.createProperty(project, newName)
+            val newKeyNode = property.firstChild.node
+            node.replaceChild(keyNode, newKeyNode)
+        }
+
+        return this
     }
 
-    return this
-  }
-
-  override fun getNameIdentifier() = node.findChildByType(KEY)?.psi
+    override fun getNameIdentifier() = node.findChildByType(KEY)?.psi
 }

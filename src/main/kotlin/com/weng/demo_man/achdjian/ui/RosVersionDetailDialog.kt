@@ -21,11 +21,11 @@ class RosVersionDetailDialog : DialogWrapper(null, true) {
 
     override fun createCenterPanel(): JComponent {
         val decorator = ToolbarDecorator
-                .createDecorator(versionList)
-                .disableUpDownActions()
-                .setAddAction { addSdk() }
-                .setEditAction { editSdk() }
-                .setRemoveAction { removeSdk() }
+            .createDecorator(versionList)
+            .disableUpDownActions()
+            .setAddAction { addSdk() }
+            .setEditAction { editSdk() }
+            .setRemoveAction { removeSdk() }
         decorator.setPreferredSize(Dimension(600, 500))
         val panel = decorator.createPanel()
         mainPanel = panel

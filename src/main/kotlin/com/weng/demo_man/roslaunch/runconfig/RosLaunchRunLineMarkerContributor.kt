@@ -10,14 +10,14 @@ import com.intellij.psi.xml.XmlTag
  */
 
 object RosLaunchRunLineMarkerContributor : RunLineMarkerContributor() {
-  override fun getInfo(element: PsiElement) =
-    if (isIdentifier(element))
-      Info(AllIcons.RunConfigurations.TestState.Run, ExecutorAction.getActions()) { "Run ROSLaunch" }
-    else null
+    override fun getInfo(element: PsiElement) =
+        if (isIdentifier(element))
+            Info(AllIcons.RunConfigurations.TestState.Run, ExecutorAction.getActions()) { "Run ROSLaunch" }
+        else null
 
-  private fun isIdentifier(psiEl: PsiElement?): Boolean {
-    val isLaunchFile = psiEl?.containingFile?.name?.endsWith(".launch") ?: false
-    val isTopmostTag = (psiEl as? XmlTag)?.name == "launch"
-    return isLaunchFile && isTopmostTag
-  }
+    private fun isIdentifier(psiEl: PsiElement?): Boolean {
+        val isLaunchFile = psiEl?.containingFile?.name?.endsWith(".launch") ?: false
+        val isTopmostTag = (psiEl as? XmlTag)?.name == "launch"
+        return isLaunchFile && isTopmostTag
+    }
 }

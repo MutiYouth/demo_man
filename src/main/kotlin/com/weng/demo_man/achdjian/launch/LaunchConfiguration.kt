@@ -9,7 +9,8 @@ import com.intellij.openapi.vfs.*
 import org.jdom.Element
 
 class LaunchConfiguration(project: Project, configurationFactory: ConfigurationFactory, targetName: String) :
-        LocatableConfigurationBase<RunProfileState>(project, configurationFactory, targetName), RunConfigurationWithSuppressedDefaultDebugAction {
+    LocatableConfigurationBase<RunProfileState>(project, configurationFactory, targetName),
+    RunConfigurationWithSuppressedDefaultDebugAction {
 
 
     companion object {

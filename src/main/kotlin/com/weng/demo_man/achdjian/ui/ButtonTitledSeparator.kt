@@ -38,15 +38,49 @@ class ButtonTitledSeparator constructor(val text: String) : JPanel() {
 
     init {
         layout = GridBagLayout()
-        add(label, GridBagConstraints(0, 0, 1, 1, 0.0, 1.0, GridBagConstraints.WEST, GridBagConstraints.NONE, Insets(0, 0, 0, 0), 0, 0))
-        add(separator,
-                GridBagConstraints(1, 0, GridBagConstraints.REMAINDER, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-                        Insets(2, SEPARATOR_LEFT_INSET, 0, SEPARATOR_RIGHT_INSET), 0, 0))
+        add(
+            label,
+            GridBagConstraints(
+                0,
+                0,
+                1,
+                1,
+                0.0,
+                1.0,
+                GridBagConstraints.WEST,
+                GridBagConstraints.NONE,
+                Insets(0, 0, 0, 0),
+                0,
+                0
+            )
+        )
+        add(
+            separator,
+            GridBagConstraints(
+                1,
+                0,
+                GridBagConstraints.REMAINDER,
+                1,
+                1.0,
+                1.0,
+                GridBagConstraints.CENTER,
+                GridBagConstraints.HORIZONTAL,
+                Insets(2, SEPARATOR_LEFT_INSET, 0, SEPARATOR_RIGHT_INSET),
+                0,
+                0
+            )
+        )
         border = EMPTY_BORDER
         label.text = text
         val imgSize = label.preferredSize.height / 2
-        closeImg = ImageIcon(ImageIO.read(ButtonTitledSeparator::class.java.classLoader.getResourceAsStream(CLOSE_IMG)).getScaledInstance(imgSize, imgSize, Image.SCALE_SMOOTH))
-        openImg = ImageIcon(ImageIO.read(ButtonTitledSeparator::class.java.classLoader.getResourceAsStream(OPEN_IMG)).getScaledInstance(imgSize, imgSize, Image.SCALE_SMOOTH))
+        closeImg = ImageIcon(
+            ImageIO.read(ButtonTitledSeparator::class.java.classLoader.getResourceAsStream(CLOSE_IMG))
+                .getScaledInstance(imgSize, imgSize, Image.SCALE_SMOOTH)
+        )
+        openImg = ImageIcon(
+            ImageIO.read(ButtonTitledSeparator::class.java.classLoader.getResourceAsStream(OPEN_IMG))
+                .getScaledInstance(imgSize, imgSize, Image.SCALE_SMOOTH)
+        )
         button = createButton(imgSize)
     }
 

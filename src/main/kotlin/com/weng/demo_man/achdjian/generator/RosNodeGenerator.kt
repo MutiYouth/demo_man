@@ -62,11 +62,17 @@ class RosNodeGenerator : CMakeAbstractCPPProjectGenerator() {
 
     override fun getCMakeFileContent(p0: String) = ""
 
-    override fun createCMakeFile(project: Project, name: String, dir: VirtualFile): VirtualFile? = createStructure(name, dir)
+    override fun createCMakeFile(project: Project, name: String, dir: VirtualFile): VirtualFile? =
+        createStructure(name, dir)
 
-    override fun generateProject(project: Project, baseDir: VirtualFile, cmakeSetting: CMakeProjectSettings, module: Module) {
-        //super.generateProject(project, path, cmakeSetting, module)
-        val cmakeFile = createCMakeFile(project,project.name, baseDir)
+    override fun generateProject(
+        project: Project,
+        baseDir: VirtualFile,
+        cmakeSetting: CMakeProjectSettings,
+        module: Module
+    ) {
+        // super.generateProject(project, path, cmakeSetting, module)
+        val cmakeFile = createCMakeFile(project, project.name, baseDir)
         val srcDir = VfsUtil.createDirectoryIfMissing(baseDir, "src")
         CMakeWorkspace.getInstance(project).selectProjectDir(VfsUtilCore.virtualToIoFile(srcDir))
         if (!ApplicationManager.getApplication().isHeadlessEnvironment) {
@@ -84,8 +90,8 @@ class RosNodeGenerator : CMakeAbstractCPPProjectGenerator() {
             val srcDir = VfsUtil.createDirectoryIfMissing(baseDir, "src")
             LOG.trace("Created src folder: ${srcDir.path}")
             val cmakeLists = srcDir.findChild("CMakeLists.txt")?.let { it }
-                    ?: version.initWorkspace(baseDir)
-                    ?: srcDir.createChildData(this, "CMakeLists.txt")
+                ?: version.initWorkspace(baseDir)
+                ?: srcDir.createChildData(this, "CMakeLists.txt")
             version.createPackage(baseDir, projectName, packagesPanel.selected())
             cmakeLists
         })

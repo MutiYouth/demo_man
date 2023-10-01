@@ -12,15 +12,15 @@ import org.jetbrains.annotations.NonNls
  */
 
 class RosManifestSchemaProvider : XmlSchemaProvider() {
-  private val schemaName = "rosmanifest.xsd"
+    private val schemaName = "rosmanifest.xsd"
 
-  private val xsdFile by lazy { VfsUtil.findFileByURL(javaClass.getResource(schemaName))!! }
+    private val xsdFile by lazy { VfsUtil.findFileByURL(javaClass.getResource(schemaName))!! }
 
-  private fun isPackageFile(name: String) = name.contains(".package")
+    private fun isPackageFile(name: String) = name.contains(".package")
 
-  override fun isAvailable(file: XmlFile) = isPackageFile(file.name)
+    override fun isAvailable(file: XmlFile) = isPackageFile(file.name)
 
-  override fun getSchema(@NonNls url: String, module: Module?, baseFile: PsiFile) = module?.let { getReference(it) }
+    override fun getSchema(@NonNls url: String, module: Module?, baseFile: PsiFile) = module?.let { getReference(it) }
 
-  private fun getReference(module: Module) = PsiManager.getInstance(module.project).findFile(xsdFile) as XmlFile
+    private fun getReference(module: Module) = PsiManager.getInstance(module.project).findFile(xsdFile) as XmlFile
 }

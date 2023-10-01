@@ -9,18 +9,23 @@ import java.nio.file.attribute.*
 import java.util.*
 
 object CONST {
-    val perms: EnumSet<PosixFilePermission> = EnumSet.of<PosixFilePermission>(PosixFilePermission.OWNER_READ, PosixFilePermission.OWNER_WRITE, PosixFilePermission.OWNER_EXECUTE, PosixFilePermission.GROUP_READ)
+    val perms: EnumSet<PosixFilePermission> = EnumSet.of<PosixFilePermission>(
+        PosixFilePermission.OWNER_READ,
+        PosixFilePermission.OWNER_WRITE,
+        PosixFilePermission.OWNER_EXECUTE,
+        PosixFilePermission.GROUP_READ
+    )
 }
 
 
 fun getVersion(project: Project) =
-        project.projectFile
-                ?.parent
-                ?.parent
-                ?.findChild("CMakeLists.txt")
-                ?.let {
-                    getRosVersionFromCMakeLists(it)
-                }
+    project.projectFile
+        ?.parent
+        ?.parent
+        ?.findChild("CMakeLists.txt")
+        ?.let {
+            getRosVersionFromCMakeLists(it)
+        }
 
 fun getBaseDir(project: Project) = project.projectFile?.parent?.parent?.parent
 
@@ -33,11 +38,11 @@ fun getPackages(project: Project): List<RosPackage> {
         log.trace("$path")
         val baseSearch = path.parent.parent
         Files
-                .walk(baseSearch)
-                .filter { it.fileName.toString() == "package.xml" }
-                .peek { log.trace("found package $it") }
-                .map { RosPackage(it.parent, getEnvironmentVariables(project, version.env)) }
-                .forEach { packages.add(it) }
+            .walk(baseSearch)
+            .filter { it.fileName.toString() == "package.xml" }
+            .peek { log.trace("found package $it") }
+            .map { RosPackage(it.parent, getEnvironmentVariables(project, version.env)) }
+            .forEach { packages.add(it) }
         packages.addAll(version.searchPackages())
     }
     return packages
@@ -52,12 +57,12 @@ fun getEnvironmentVariables(project: Project, env: Map<String, String>): Map<Str
     val base = FileSystems.getDefault().getPath(project.projectFile?.parent?.parent?.parent?.path)
     base?.let { basePath ->
         basePath
-                .resolve("devel")
-                ?.resolve("setup.bash")
-                ?.let {
-                    log.trace("setup.bash at $it")
-                    newEnv.putAll(getEnvironment(basePath, it.toString(), env))
-                }
+            .resolve("devel")
+            ?.resolve("setup.bash")
+            ?.let {
+                log.trace("setup.bash at $it")
+                newEnv.putAll(getEnvironment(basePath, it.toString(), env))
+            }
     }
 
     return newEnv

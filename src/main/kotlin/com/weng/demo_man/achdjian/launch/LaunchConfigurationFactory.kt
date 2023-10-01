@@ -12,8 +12,11 @@ object IDs {
 }
 
 
-class LaunchConfigurationFactory(val configurationType: LaunchConfigurationType) : ConfigurationFactory(configurationType) {
-    override fun createTemplateConfiguration(project: Project) = LaunchConfiguration(project, configurationType.confFactory, "")
+class LaunchConfigurationFactory(val configurationType: LaunchConfigurationType) :
+    ConfigurationFactory(configurationType) {
+    override fun createTemplateConfiguration(project: Project) =
+        LaunchConfiguration(project, configurationType.confFactory, "")
+
     override fun getSingletonPolicy() = RunConfigurationSingletonPolicy.SINGLE_INSTANCE_ONLY
     override fun getId() = IDs.FACTORY
 
@@ -25,7 +28,7 @@ class LaunchConfigurationType : ConfigurationTypeBase(IDs.ID, IDs.DISPLAY_NAME, 
     init {
         addFactory(object : ConfigurationFactory(this) {
             override fun createTemplateConfiguration(project: Project): RunConfiguration =
-                    LaunchConfiguration(project, this, IDs.FACTORY)
+                LaunchConfiguration(project, this, IDs.FACTORY)
 
         })
     }

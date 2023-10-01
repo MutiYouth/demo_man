@@ -8,25 +8,25 @@ import com.intellij.psi.tree.*
 import com.weng.demo_man.psi.*
 
 class RosInterfaceParserDefinition : ParserDefinition {
-  val WHITE_SPACES = TokenSet.create(TokenType.WHITE_SPACE)
-  val COMMENTS = TokenSet.create(RosInterfaceTypes.COMMENT)
-  val FILE = IFileElementType(RosInterfaceLanguage)
+    val WHITE_SPACES = TokenSet.create(TokenType.WHITE_SPACE)
+    val COMMENTS = TokenSet.create(RosInterfaceTypes.COMMENT)
+    val FILE = IFileElementType(RosInterfaceLanguage)
 
-  override fun createLexer(project: Project) = RosInterfaceLexerAdapter()
+    override fun createLexer(project: Project) = RosInterfaceLexerAdapter()
 
-  override fun getWhitespaceTokens(): TokenSet = WHITE_SPACES
+    override fun getWhitespaceTokens(): TokenSet = WHITE_SPACES
 
-  override fun getCommentTokens(): TokenSet = COMMENTS
+    override fun getCommentTokens(): TokenSet = COMMENTS
 
-  override fun getStringLiteralElements(): TokenSet = TokenSet.EMPTY
+    override fun getStringLiteralElements(): TokenSet = TokenSet.EMPTY
 
-  override fun createParser(project: Project) = RosInterfaceParser()
+    override fun createParser(project: Project) = RosInterfaceParser()
 
-  override fun getFileNodeType(): IFileElementType = FILE
+    override fun getFileNodeType(): IFileElementType = FILE
 
-  override fun createFile(viewProvider: FileViewProvider): PsiFile = RosInterfaceFile(viewProvider)
+    override fun createFile(viewProvider: FileViewProvider): PsiFile = RosInterfaceFile(viewProvider)
 
-  override fun spaceExistenceTypeBetweenTokens(left: ASTNode, right: ASTNode) = SpaceRequirements.MAY
+    override fun spaceExistenceTypeBetweenTokens(left: ASTNode, right: ASTNode) = SpaceRequirements.MAY
 
-  override fun createElement(node: ASTNode): PsiElement = RosInterfaceTypes.Factory.createElement(node)
+    override fun createElement(node: ASTNode): PsiElement = RosInterfaceTypes.Factory.createElement(node)
 }

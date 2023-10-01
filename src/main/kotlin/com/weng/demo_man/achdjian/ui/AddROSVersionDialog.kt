@@ -56,12 +56,13 @@ class AddROSVersionDialog(startName: String, startPath: String) : DialogWrapper(
         val editor = versionPath.childComponent.textEditor
 
         installFileCompletionAndBrowseDialog(
-                null,
-                versionPath,
-                editor,
-                "ROS version versionPath",
-                fileChooserDescriptor = FileChooserDescriptorFactory.createSingleFolderDescriptor(),
-            textComponentAccessor = TextComponentAccessors.TEXT_FIELD_WITH_HISTORY_WHOLE_TEXT) {
+            null,
+            versionPath,
+            editor,
+            "ROS version versionPath",
+            fileChooserDescriptor = FileChooserDescriptorFactory.createSingleFolderDescriptor(),
+            textComponentAccessor = TextComponentAccessors.TEXT_FIELD_WITH_HISTORY_WHOLE_TEXT
+        ) {
             if (it.path.isNotEmpty() && versionName.text.isNotEmpty())
                 isOKActionEnabled = true
             it.path

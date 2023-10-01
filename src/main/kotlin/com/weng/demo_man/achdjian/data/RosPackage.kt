@@ -21,7 +21,7 @@ class RosPackage(val path: Path, val env: Map<String, String>) {
         log.trace("package at $path, with ${env.size} environment")
         val packageFile = path.resolve("package.xml")
         val doc = DocumentBuilderFactory.newInstance()
-                .newDocumentBuilder().parse(packageFile.toFile())
+            .newDocumentBuilder().parse(packageFile.toFile())
 
         val xPath = XPathFactory.newInstance().newXPath()
         name = getNodeValue(xPath, "/package/name", doc)
@@ -35,9 +35,9 @@ class RosPackage(val path: Path, val env: Map<String, String>) {
         val foundNodes = ArrayList<RosNode>()
         catkinFindLibexec(name, env).forEach { libExecPath ->
             Files.walk(libExecPath)
-                    .filter { !Files.isDirectory(it) && Files.isExecutable(it) }
-                    .map { RosNode(it) }
-                    .forEach { foundNodes.add(it) }
+                .filter { !Files.isDirectory(it) && Files.isExecutable(it) }
+                .map { RosNode(it) }
+                .forEach { foundNodes.add(it) }
         }
         rosNodes = foundNodes
         return foundNodes

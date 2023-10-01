@@ -14,8 +14,12 @@ import com.jetbrains.cidr.execution.debugger.CidrDebugProcess
 import com.weng.demo_man.achdjian.utils.getPackages
 import java.io.File
 
-class NodeLauncherCMake(private val nodeConfiguration: NodeConfiguration, private val prj: Project, environment: ExecutionEnvironment) :
-        CMakeLauncher(environment, nodeConfiguration) {
+class NodeLauncherCMake(
+    private val nodeConfiguration: NodeConfiguration,
+    private val prj: Project,
+    environment: ExecutionEnvironment
+) :
+    CMakeLauncher(environment, nodeConfiguration) {
     companion object {
         private val LOG = Logger.getInstance(NodeLauncherCMake::class.java)
     }
@@ -24,9 +28,9 @@ class NodeLauncherCMake(private val nodeConfiguration: NodeConfiguration, privat
     override fun createProcess(state: CommandLineState): ProcessHandler {
         val packages = getPackages(project)
         val node = packages
-                .filter { it.name == nodeConfiguration.rosPackageName }
-                .flatMap { it.getNodes() }
-                .firstOrNull { it.name == nodeConfiguration.rosNodeName }
+            .filter { it.name == nodeConfiguration.rosPackageName }
+            .flatMap { it.getNodes() }
+            .firstOrNull { it.name == nodeConfiguration.rosNodeName }
 //        node?.let {
 //            configuration.executableData = ExecutableData(it.path.toString() )
 //        }
@@ -46,9 +50,9 @@ class NodeLauncherCMake(private val nodeConfiguration: NodeConfiguration, privat
     override fun createDebugProcess(state: CommandLineState, session: XDebugSession): XDebugProcess {
         val packages = getPackages(project)
         val node = packages
-                .filter { it.name == nodeConfiguration.rosPackageName }
-                .flatMap { it.getNodes() }
-                .firstOrNull { it.name == nodeConfiguration.rosNodeName }
+            .filter { it.name == nodeConfiguration.rosPackageName }
+            .flatMap { it.getNodes() }
+            .firstOrNull { it.name == nodeConfiguration.rosNodeName }
 //        node?.let {
 //            configuration.executableData = ExecutableData(it.path.toString() )
 //        }

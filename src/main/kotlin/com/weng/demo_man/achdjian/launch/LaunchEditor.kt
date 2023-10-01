@@ -19,6 +19,7 @@ class LaunchEditor(project: Project) : SettingsEditor<LaunchConfiguration>() {
     private val rosMasterAddr = JBTextField("127.0.0.1")
     private val rosMasterPort = IntegerField("11311", 0, 65535)
     private val screen = JCheckBox("Force output of all local nodes to screen")
+
     //    private val log = JCheckBox("Force output of all local nodes to log")
     private val wait = JCheckBox("wait for master to start before launching")
     private val verbose = JCheckBox("verbose printing")

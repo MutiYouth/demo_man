@@ -9,11 +9,13 @@ import com.intellij.ui.TextFieldWithHistoryWithBrowseButton
 import com.intellij.ui.components.installFileCompletionAndBrowseDialog
 import com.intellij.util.ui.SwingHelper
 
-class LauncherFileChooser(browseDialogTitle: String,
-                          project: Project? = null,
-                          fileChooserDescriptor: FileChooserDescriptor = FileChooserDescriptorFactory.createSingleFileNoJarsDescriptor(),
-                          historyProvider: (() -> List<String>)? = null,
-                          fileChosen: ((chosenFile: VirtualFile) -> String)? = null) : TextFieldWithHistoryWithBrowseButton() {
+class LauncherFileChooser(
+    browseDialogTitle: String,
+    project: Project? = null,
+    fileChooserDescriptor: FileChooserDescriptor = FileChooserDescriptorFactory.createSingleFileNoJarsDescriptor(),
+    historyProvider: (() -> List<String>)? = null,
+    fileChosen: ((chosenFile: VirtualFile) -> String)? = null
+) : TextFieldWithHistoryWithBrowseButton() {
     init {
         childComponent.setHistorySize(-1)
         childComponent.setMinimumAndPreferredWidth(0)
@@ -21,13 +23,13 @@ class LauncherFileChooser(browseDialogTitle: String,
             SwingHelper.addHistoryOnExpansion(childComponent, historyProvider)
         }
         installFileCompletionAndBrowseDialog(
-                project = project,
-                component = this,
-                textField = childComponent.textEditor,
-                browseDialogTitle = browseDialogTitle,
-                fileChooserDescriptor = fileChooserDescriptor,
-                textComponentAccessor = TextComponentAccessors.TEXT_FIELD_WITH_HISTORY_WHOLE_TEXT,
-                fileChosen = fileChosen
+            project = project,
+            component = this,
+            textField = childComponent.textEditor,
+            browseDialogTitle = browseDialogTitle,
+            fileChooserDescriptor = fileChooserDescriptor,
+            textComponentAccessor = TextComponentAccessors.TEXT_FIELD_WITH_HISTORY_WHOLE_TEXT,
+            fileChosen = fileChosen
         )
     }
 }

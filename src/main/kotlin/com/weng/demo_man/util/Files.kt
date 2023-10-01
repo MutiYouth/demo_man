@@ -7,15 +7,15 @@ import com.intellij.psi.*
 import com.intellij.psi.search.*
 
 fun findFilesByRelativePath(project: Project, fileRelativePath: String): List<PsiFileSystemItem?> {
-  val relativePath = if (fileRelativePath.startsWith("/")) fileRelativePath else "/$fileRelativePath"
-  val fileType = FileTypeManager.getInstance().getFileTypeByFileName(relativePath)
-  val files = mutableListOf<VirtualFile>()
-  val psiMgr = PsiManager.getInstance(project)
-  val projectScope = GlobalSearchScope.projectScope(project)
-  val fileProcessor = { virtualFile: VirtualFile ->
-    if (virtualFile.path.endsWith(relativePath)) files.add(virtualFile); true
-  }
+    val relativePath = if (fileRelativePath.startsWith("/")) fileRelativePath else "/$fileRelativePath"
+    val fileType = FileTypeManager.getInstance().getFileTypeByFileName(relativePath)
+    val files = mutableListOf<VirtualFile>()
+    val psiMgr = PsiManager.getInstance(project)
+    val projectScope = GlobalSearchScope.projectScope(project)
+    val fileProcessor = { virtualFile: VirtualFile ->
+        if (virtualFile.path.endsWith(relativePath)) files.add(virtualFile); true
+    }
 
-  FileTypeIndex.processFiles(fileType, fileProcessor, projectScope)
-  return files.map { psiMgr.run { findFile(it) ?: findDirectory(it) } }
+    FileTypeIndex.processFiles(fileType, fileProcessor, projectScope)
+    return files.map { psiMgr.run { findFile(it) ?: findDirectory(it) } }
 }

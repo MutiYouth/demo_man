@@ -11,7 +11,7 @@ import com.weng.demo_man.achdjian.utils.getPackages
 import org.jdom.Element
 
 class NodeConfiguration(project: Project, configurationFactory: ConfigurationFactory, targetName: String) :
-        CMakeAppRunConfiguration(project, configurationFactory, targetName), CidrExecutableDataHolder {
+    CMakeAppRunConfiguration(project, configurationFactory, targetName), CidrExecutableDataHolder {
 
 
     companion object {

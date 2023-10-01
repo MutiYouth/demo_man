@@ -8,18 +8,18 @@ import com.intellij.execution.runners.ExecutionEnvironment
 import com.weng.demo_man.settings.RosConfig
 
 class RosCommandLineState : CommandLineState {
-  private val commandLine: GeneralCommandLine
+    private val commandLine: GeneralCommandLine
 
-  constructor(env: ExecutionEnvironment, vararg commands: String) : super(env) {
-    commandLine = createCommandLine(*commands)
-    consoleBuilder = TextConsoleBuilderFactory.getInstance().createBuilder(env.project)
-  }
+    constructor(env: ExecutionEnvironment, vararg commands: String) : super(env) {
+        commandLine = createCommandLine(*commands)
+        consoleBuilder = TextConsoleBuilderFactory.getInstance().createBuilder(env.project)
+    }
 
-  private fun createCommandLine(vararg commands: String) =
-    GeneralCommandLine(*commands)
-      .withEnvironment(RosConfig.rosSettings.localRos.env)
-      .withParentEnvironmentType(SYSTEM)
+    private fun createCommandLine(vararg commands: String) =
+        GeneralCommandLine(*commands)
+            .withEnvironment(RosConfig.rosSettings.localRos.env)
+            .withParentEnvironmentType(SYSTEM)
 
-  override fun startProcess() =
-    KillableColoredProcessHandler(commandLine).apply { ProcessTerminatedListener.attach(this) }
+    override fun startProcess() =
+        KillableColoredProcessHandler(commandLine).apply { ProcessTerminatedListener.attach(this) }
 }

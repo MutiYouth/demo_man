@@ -5,9 +5,9 @@ import javax.swing.JLabel
 
 
 object DemoModuleWizardStep : ModuleWizardStep() {
-  override fun getComponent() = JLabel("Provide some setting here")
+    override fun getComponent() = JLabel("Provide some setting here")
 
-  override fun updateDataModel() {
-    //todo update model according to UI
-  }
+    override fun updateDataModel() {
+        // todo update model according to UI
+    }
 }

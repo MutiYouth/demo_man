@@ -10,11 +10,11 @@ import com.weng.demo_man.rosinterface.*
  */
 
 class RosInterfaceFile : PsiFileBase {
-  constructor(viewProvider: FileViewProvider) : super(viewProvider, RosInterfaceLanguage)
+    constructor(viewProvider: FileViewProvider) : super(viewProvider, RosInterfaceLanguage)
 
-  override fun getFileType() = RosInterfaceFileType
+    override fun getFileType() = RosInterfaceFileType
 
-  override fun toString() = "ROS Interface File"
+    override fun toString() = "ROS Interface File"
 
-  override fun getIcon(flags: Int) = Icons.ros_msg
+    override fun getIcon(flags: Int) = Icons.ros_msg
 }

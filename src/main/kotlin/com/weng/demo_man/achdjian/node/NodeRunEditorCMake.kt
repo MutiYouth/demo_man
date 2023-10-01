@@ -13,7 +13,8 @@ import com.weng.demo_man.achdjian.data.*
 import com.weng.demo_man.achdjian.ui.*
 import com.weng.demo_man.achdjian.utils.getPackages
 
-class NodeRunEditorCMake(val project: Project, helper: CMakeBuildConfigurationHelper) : CMakeAppRunConfigurationSettingsEditor(project, helper) {
+class NodeRunEditorCMake(val project: Project, helper: CMakeBuildConfigurationHelper) :
+    CMakeAppRunConfigurationSettingsEditor(project, helper) {
     companion object {
         private val LOG = Logger.getInstance(NodeRunEditorCMake::class.java)
 

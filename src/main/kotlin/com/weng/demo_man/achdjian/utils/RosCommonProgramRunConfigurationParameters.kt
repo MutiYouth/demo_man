@@ -53,11 +53,11 @@ class RosCommonProgramRunConfigurationParameters(private val prj: Project) : Com
         parentElement.getAttributeValue(WORKING_DIR)?.let { workingDir = it }
         parentElement.getChild(ENVIRONMENT)?.let { envElement ->
             env = HashMap(envElement
-                    .content
-                    .filter { it is Element }
-                    .map { it as Element }
-                    .map { it.name to it.text }
-                    .toMap())
+                .content
+                .filter { it is Element }
+                .map { it as Element }
+                .map { it.name to it.text }
+                .toMap())
         }
         parentElement.getAttributeValue(PASS_PARENT_ENV)?.let { setPassParentEnvs = it.toBoolean() }
     }

@@ -24,14 +24,15 @@ fun releaseProfile(version: RosVersion, baseDir: File): CMakeSettings.Profile {
     val buildDir = File(baseDir, "build")
     val options = "-DCATKIN_DEVEL_PREFIX=${baseDir}/devel -DCMAKE_INSTALL_PREFIX=${baseDir}/install"
     return CMakeSettings.Profile(
-            "Release",
-            "Release",
-            "",
-            options,
-            true,
-            version.env,
-            buildDir,
-            "")
+        "Release",
+        "Release",
+        "",
+        options,
+        true,
+        version.env,
+        buildDir,
+        ""
+    )
 }
 
 fun getRosVersionFromCMakeLists(file: VirtualFile): RosVersionImpl? {

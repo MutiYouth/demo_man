@@ -21,19 +21,19 @@ class ImporterRosWorkspaceAction : AnAction(AllIcons.ToolbarDecorator.Import), D
 }
 
 class RosWorkspaceChooserDescriptor :
-        FileChooserDescriptor(false, true, false, false, false, false) {
+    FileChooserDescriptor(false, true, false, false, false, false) {
     override fun getIcon(file: VirtualFile): Icon? =
-            if (isRosWS(file)) Icons.ros_folder else super.getIcon(file)
+        if (isRosWS(file)) Icons.ros_folder else super.getIcon(file)
 
     override fun isFileSelectable(file: VirtualFile?) =
-            file != null && (!file.isDirectory || file.children.isNotEmpty())
+        file != null && (!file.isDirectory || file.children.isNotEmpty())
 }
 
 fun isRosWS(file: VirtualFile) =
-        file.isDirectory &&
-                file.findChild("src")
-                        ?.findChild("CMakeLists.txt")
-                        ?.exists() ?: false
+    file.isDirectory &&
+            file.findChild("src")
+                ?.findChild("CMakeLists.txt")
+                ?.exists() ?: false
 
 fun startWizard() {
     choseFile()?.let { chosenDir ->
@@ -57,10 +57,10 @@ fun startWizard() {
 }
 
 fun undefinedRosEnvironment() =
-        Messages.showErrorDialog("Directory doesn't contains a recognized ROS environment", "Import ROS workspace")
+    Messages.showErrorDialog("Directory doesn't contains a recognized ROS environment", "Import ROS workspace")
 
 fun invalidRosEnvironment() =
-        Messages.showErrorDialog("Directory doesn't contains a valid ROS environment", "Import ROS workspace")
+    Messages.showErrorDialog("Directory doesn't contains a valid ROS environment", "Import ROS workspace")
 
 fun choseFile(): VirtualFile? {
     val fileChooserDescriptor = RosWorkspaceChooserDescriptor()

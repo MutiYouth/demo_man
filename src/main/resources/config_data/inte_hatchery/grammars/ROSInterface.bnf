@@ -19,7 +19,7 @@ property ::= (TYPE KEY SEPARATOR VALUE)|(TYPE KEY) {
     recoverWhile="recover_property"
     mixin="com.weng.demo_man.psi.impl.RosInterfaceNamedElementImpl"
     implements="com.weng.demo_man.psi.RosInterfaceNamedElement"
-//    methods=[getType getKey getValue getName setName getNameIdentifier]
+    // methods=[getType getKey getValue getName setName getNameIdentifier]
 }
 
 private recover_property ::= !(TYPE|KEY|SEPARATOR|COMMENT)

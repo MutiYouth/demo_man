@@ -24,11 +24,17 @@ import javax.swing.border.TitledBorder
 /**
  * @author evgeny zakrevsky
  */
-class ButtonTitledBorder(title: String, val parent: Component, val statusChange: (close: Boolean) -> Any) : TitledBorder(title), MouseListener {
+class ButtonTitledBorder(title: String, val parent: Component, val statusChange: (close: Boolean) -> Any) :
+    TitledBorder(title), MouseListener {
 
     companion object {
         private const val INDENT = 20
-        private val Insets = Insets(IdeBorderFactory.TITLED_BORDER_TOP_INSET, IdeBorderFactory.TITLED_BORDER_LEFT_INSET, IdeBorderFactory.TITLED_BORDER_BOTTOM_INSET, IdeBorderFactory.TITLED_BORDER_RIGHT_INSET)
+        private val Insets = Insets(
+            IdeBorderFactory.TITLED_BORDER_TOP_INSET,
+            IdeBorderFactory.TITLED_BORDER_LEFT_INSET,
+            IdeBorderFactory.TITLED_BORDER_BOTTOM_INSET,
+            IdeBorderFactory.TITLED_BORDER_RIGHT_INSET
+        )
     }
 
     private val titledSeparator = ButtonTitledSeparator(title)
@@ -111,7 +117,13 @@ class ButtonTitledBorder(title: String, val parent: Component, val statusChange:
 
         val button = titledSeparator.button
 
-        if (button.visibleRect.contains(Point(event.point.x - outsideInsets.left, event.point.y - (deltaButtonY + outsideInsets.top)))) {
+        if (button.visibleRect.contains(
+                Point(
+                    event.point.x - outsideInsets.left,
+                    event.point.y - (deltaButtonY + outsideInsets.top)
+                )
+            )
+        ) {
             if (close) {
                 titledSeparator.buttonOpen()
                 close = false

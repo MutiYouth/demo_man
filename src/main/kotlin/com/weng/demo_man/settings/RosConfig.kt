@@ -10,42 +10,42 @@ import com.intellij.openapi.options.Configurable
 
 @State(name = "RosConfig", storages = [(Storage("hatchery.xml"))])
 class RosConfig : Configurable, PersistentStateComponent<RosSettings> {
-  private val logger = Logger.getInstance(RosConfig::class.java)
+    private val logger = Logger.getInstance(RosConfig::class.java)
 
-  companion object {
-    val rosSettings: RosSettings
-      get() = ServiceManager.getService(RosConfig::class.java).settings
-  }
+    companion object {
+        val rosSettings: RosSettings
+            get() = ServiceManager.getService(RosConfig::class.java).settings
+    }
 
-  var settings: RosSettings = RosSettings()
-    private set
+    var settings: RosSettings = RosSettings()
+        private set
 
-  override fun getState() = settings
+    override fun getState() = settings
 
-  override fun loadState(state: RosSettings) {
-    logger.info("Loaded RosConfig settings: $settings")
-    settings = state
-  }
+    override fun loadState(state: RosSettings) {
+        logger.info("Loaded RosConfig settings: $settings")
+        settings = state
+    }
 
-  private val panel by lazy { RosSettingsPanel() }
+    private val panel by lazy { RosSettingsPanel() }
 
-  override fun getDisplayName() = "Hatchery"
+    override fun getDisplayName() = "Hatchery"
 
-  override fun createComponent() = panel.rootPanel
+    override fun createComponent() = panel.rootPanel
 
-  override fun isModified() = panel.localRosPath != settings.localRosPath ||
-    panel.remoteAddress != settings.remoteAddress ||
-    panel.defaultRosLaunchOptions != settings.defaultRosLaunchOptions
+    override fun isModified() = panel.localRosPath != settings.localRosPath ||
+            panel.remoteAddress != settings.remoteAddress ||
+            panel.defaultRosLaunchOptions != settings.defaultRosLaunchOptions
 
-  override fun apply() {
-    settings.localRosPath = panel.localRosPath
-    settings.defaultRosLaunchOptions = panel.defaultRosLaunchOptions
-    settings.remoteRosPath = panel.remoteRosPath
-    settings.remoteAddress = panel.remoteAddress
-    settings.remoteRunCommand = panel.remoteRunCommand
-    settings.sshCredentialsPath = panel.sshCredentialsPath
-    logger.info("User applied new settings: $settings")
-  }
+    override fun apply() {
+        settings.localRosPath = panel.localRosPath
+        settings.defaultRosLaunchOptions = panel.defaultRosLaunchOptions
+        settings.remoteRosPath = panel.remoteRosPath
+        settings.remoteAddress = panel.remoteAddress
+        settings.remoteRunCommand = panel.remoteRunCommand
+        settings.sshCredentialsPath = panel.sshCredentialsPath
+        logger.info("User applied new settings: $settings")
+    }
 
-  override fun reset() = panel.reset(settings)
+    override fun reset() = panel.reset(settings)
 }

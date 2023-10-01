@@ -32,8 +32,10 @@ class GridLayout2(row: Int, col: Int) : GridLayout(row, col, 20, 20) {
             }
             val nw = w.sum()
             val nh = h.sum()
-            return Dimension(insets.left + insets.right + nw + (nCols - 1) * hgap,
-                    insets.top + insets.bottom + nh + (nRows - 1) * vgap)
+            return Dimension(
+                insets.left + insets.right + nw + (nCols - 1) * hgap,
+                insets.top + insets.bottom + nh + (nRows - 1) * vgap
+            )
         }
     }
 
@@ -65,8 +67,10 @@ class GridLayout2(row: Int, col: Int) : GridLayout(row, col, 20, 20) {
             }
             val nw = w.sum()
             val nh = h.sum()
-            return Dimension(insets.left + insets.right + nw + (nCols - 1) * hgap,
-                    insets.top + insets.bottom + nh + (nRows - 1) * vgap)
+            return Dimension(
+                insets.left + insets.right + nw + (nCols - 1) * hgap,
+                insets.top + insets.bottom + nh + (nRows - 1) * vgap
+            )
         }
     }
 

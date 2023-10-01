@@ -56,8 +56,8 @@ data class RosVersionImpl(var path: String, var name: String) : RosVersion {
             val srcDir = VfsUtil.createDirectoryIfMissing(baseDir, "src")
             LOG.trace("cmd: $it")
             val processBuilder = ProcessBuilder()
-                    .directory(VfsUtil.virtualToIoFile(srcDir))
-                    .command(it.toString())
+                .directory(VfsUtil.virtualToIoFile(srcDir))
+                .command(it.toString())
 
             processBuilder.environment().putAll(env)
             val process = processBuilder.start()
@@ -70,7 +70,8 @@ data class RosVersionImpl(var path: String, var name: String) : RosVersion {
         return null
     }
 
-    override fun createPackage(path: VirtualFile, name: String, dependencies: List<String>) = createPackage.createPackage(path, name, dependencies)
+    override fun createPackage(path: VirtualFile, name: String, dependencies: List<String>) =
+        createPackage.createPackage(path, name, dependencies)
 
     override fun searchPackages(): List<RosPackage> {
         packages.clear()
@@ -78,9 +79,9 @@ data class RosVersionImpl(var path: String, var name: String) : RosVersion {
         LOG.trace("packagePath: $packagesPath")
         packagesPath?.let { path ->
             Files.list(Paths.get(path))
-                    .filter { toFilter -> toFilter.resolve("package.xml").toFile().exists() }
-                    .map { path -> RosPackage(path, env) }
-                    .forEach { rosPackage -> packages.add(rosPackage) }
+                .filter { toFilter -> toFilter.resolve("package.xml").toFile().exists() }
+                .map { path -> RosPackage(path, env) }
+                .forEach { rosPackage -> packages.add(rosPackage) }
         }
         packages.sortWith(PackagesComparator())
         return packages

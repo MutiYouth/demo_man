@@ -40,7 +40,13 @@ class VersionSelectorRenderer : JLabel(), ListCellRenderer<Any?> {
     }
 
 
-    override fun getListCellRendererComponent(list: JList<out Any?>?, value: Any?, index: Int, isSelected: Boolean, cellHasFocus: Boolean): Component {
+    override fun getListCellRendererComponent(
+        list: JList<out Any?>?,
+        value: Any?,
+        index: Int,
+        isSelected: Boolean,
+        cellHasFocus: Boolean
+    ): Component {
         val str = value?.toString() ?: ""
         if (SEPARATOR_STRING == str) {
             return separator

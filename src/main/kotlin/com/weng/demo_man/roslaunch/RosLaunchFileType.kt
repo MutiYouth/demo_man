@@ -9,10 +9,10 @@ import com.weng.demo_man.filesystem.Icons
  */
 
 object RosLaunchFileType : LanguageFileType(XMLLanguage.INSTANCE) {
-  override fun getName() = "roslaunch"
-  override fun getDescription() = "roslaunch"
-  override fun getDisplayName() = "roslaunch"
-  override fun getDefaultExtension() = "launch"
+    override fun getName() = "roslaunch"
+    override fun getDescription() = "roslaunch"
+    override fun getDisplayName() = "roslaunch"
+    override fun getDefaultExtension() = "launch"
 
-  override fun getIcon() = Icons.ros_launch
+    override fun getIcon() = Icons.ros_launch
 }

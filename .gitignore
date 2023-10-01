@@ -21,4 +21,9 @@ out/
 gradlew
 gradlew.bat
 .run
-gradle
+
+system-test
+plugins-test
+plugins
+config-test
+config

@@ -8,11 +8,11 @@ import java.nio.file.Path
 fun findInitCmd(path: String): InitWorkspaceCmd? {
     val log = Logger.getInstance("#com.weng.demo_man.achdjian.settings.RosSettingsUtils.findInitCmd")
     return path.split(":")
-            .map { it -> File(it, "catkin_init_workspace") }
-            .map { it -> log.trace("Search for " + it.absolutePath + ":  exists-> " + it.exists()); it }
-            .firstOrNull { it.exists() }?.let {
-                InitWorkspaceCmd(it, "")
-            }
+        .map { it -> File(it, "catkin_init_workspace") }
+        .map { it -> log.trace("Search for " + it.absolutePath + ":  exists-> " + it.exists()); it }
+        .firstOrNull { it.exists() }?.let {
+            InitWorkspaceCmd(it, "")
+        }
 }
 
 fun diffEnvironment(rosVersion: Path): Map<String, String> {
@@ -36,7 +36,7 @@ fun diffEnvironment(rosVersion: Path): Map<String, String> {
 }
 
 fun diff(newEnv: Map<String, String>, actualEnv: Map<String, String>) =
-        newEnv.filter { (key, value) ->
-            !actualEnv.containsKey(key) || !actualEnv[key].equals(value)
-        }
+    newEnv.filter { (key, value) ->
+        !actualEnv.containsKey(key) || !actualEnv[key].equals(value)
+    }
 

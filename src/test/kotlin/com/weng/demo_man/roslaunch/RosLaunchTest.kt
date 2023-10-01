@@ -1,4 +1,4 @@
-package org.duckietown.hatchery.roslaunch
+package com.weng.demo_man.roslaunch
 
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
 import java.util.*
@@ -8,14 +8,16 @@ import java.util.*
  */
 
 class RosLaunchTest : BasePlatformTestCase() {
-  fun `test launch file detected`() {
-    myFixture.configureByText(RosLaunchFileType, """
+    fun `test launch file detected`() {
+        myFixture.configureByText(
+            RosLaunchFileType, """
         <launch>
         <node name="talker" pkg="rospy_tutorials" type="talker" />
         <caret>
         </launch>
-      """.trimIndent())
-  }
+      """.trimIndent()
+        )
+    }
 
 //  fun testPythonInterpreter() {
 //    Context.create().use { it.eval("python", """
