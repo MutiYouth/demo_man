@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NonNls
  */
 
 class RosLaunchSchemaProvider : XmlSchemaProvider() {
-    private val schemaName = "roslaunch.xsd"
+    private val schemaName = "/config_data/inte_hatchery/roslaunch/roslaunch.xsd"
 
     val xsdFile by lazy { VfsUtil.findFileByURL(javaClass.getResource(schemaName))!! }
 

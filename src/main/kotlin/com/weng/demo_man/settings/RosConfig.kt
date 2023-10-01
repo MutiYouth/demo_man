@@ -8,7 +8,7 @@ import com.intellij.openapi.options.Configurable
  * https://www.jetbrains.org/intellij/sdk/docs/basics/persisting_state_of_components.html
  */
 
-@State(name = "RosConfig", storages = [(Storage("hatchery.xml"))])
+@State(name = "RosConfig", storages = [(Storage("dm_hatchery.xml"))])
 class RosConfig : Configurable, PersistentStateComponent<RosSettings> {
     private val logger = Logger.getInstance(RosConfig::class.java)
 

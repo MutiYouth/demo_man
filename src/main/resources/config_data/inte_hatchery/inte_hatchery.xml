@@ -4,13 +4,12 @@
     <depends>com.intellij.modules.lang</depends>
     <depends>com.intellij.modules.clion</depends>
     <depends>org.jetbrains.plugins.yaml</depends>
+    <!-- <resource-bundle>HatcheryBundle</resource-bundle> -->
 
-
-    <resource-bundle>HatcheryBundle</resource-bundle>
     <application-components>
-        <component>
-            <implementation-class>com.weng.demo_man.settings.RosConfig</implementation-class>
-        </component>
+        <!-- <component> -->
+        <!--     <implementation-class>com.weng.demo_man.settings.RosConfig</implementation-class> -->
+        <!-- </component> -->
         <component>Catkin.kt
             CMakeLists.kt
             ProjectUtils.kt
@@ -20,9 +19,9 @@
         <component>
             <implementation-class>com.weng.demo_man.achdjian.data.RosCustomVersion</implementation-class>
         </component>
-        <component>
-            <implementation-class>com.weng.demo_man.achdjian.settings.RosSettings</implementation-class>
-        </component>
+        <!-- <component> -->
+        <!--     <implementation-class>com.weng.demo_man.achdjian.settings.RosSettings</implementation-class> -->
+        <!-- </component> -->
     </application-components>
 
     <extensions defaultExtensionNs="com.intellij">

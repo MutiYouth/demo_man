@@ -132,7 +132,7 @@ tasks {
 
     withType<Zip> {
         // 在plugins/demo_man/lib下生成
-        archiveFileName = "demo_man.zip"
+        archiveFileName = "demo_man_$version.zip"
     }
 
     signPlugin {
@@ -180,9 +180,9 @@ tasks {
 
     // Use unversioned filename for stable URL of CI build artifact
     register("copyPlugin", Copy::class) {
-        from("${buildDir}/libs/hatchery.zip")
+        from("${buildDir}/libs/demo_man_$version.zip")
 
-        into("${project.gradle.gradleUserHomeDir}/../.CLion2020.1/config/plugins/hatchery/lib")
+        into("${project.gradle.gradleUserHomeDir}/../.CLion2020.1/config/plugins/demo_man/lib")
     }
 
     register("Exec clion debug suspend", Exec::class) {

@@ -14,13 +14,13 @@ import kotlin.reflect.KProperty
 
 class RosSettingsPanel {
     private val localRosPathField = JBTextField()
-//  private val localRosPackages: JBTable
-//    get() = JBTable(object : DefaultTableModel(
-//      RosConfig.settings.localRos.packages.map { arrayOf(it.key, it.value) }.toTypedArray(),
-//      arrayOf("Package", "Path")
-//    ) {
-//      override fun isCellEditable(row: Int, column: Int) = false
-//    })
+    // private val localRosPackages: JBTable
+    //     get() = JBTable(object : DefaultTableModel(
+    //         RosConfig.settings.localRos.packages.map { arrayOf(it.key, it.value) }.toTypedArray(),
+    //         arrayOf("Package", "Path")
+    //     ) {
+    //         override fun isCellEditable(row: Int, column: Int) = false
+    //     })
 
     private val rosLaunchOptionsField = JBTextField()
         .apply { font = Font("monospaced", font.style, font.size) }
@@ -78,6 +78,5 @@ class RosSettingsPanel {
     private operator fun JTextComponent.setValue(a: RosSettingsPanel, p: KProperty<*>, s: String) = setText(s)
 
     private operator fun TextFieldWithBrowseButton.getValue(a: RosSettingsPanel, p: KProperty<*>) = text
-    private operator fun TextFieldWithBrowseButton.setValue(a: RosSettingsPanel, p: KProperty<*>, s: String) =
-        setText(s)
+    private operator fun TextFieldWithBrowseButton.setValue(a: RosSettingsPanel, p: KProperty<*>, s: String) = setText(s)
 }

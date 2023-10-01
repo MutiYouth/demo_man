@@ -13,7 +13,7 @@
     <xs:complexType name="DescriptionType" mixed="true">
         <xs:annotation>
             <xs:documentation>
-                The description allows any content but should be limit to XHTML.
+                The description allows any content but should be limited to XHTML.
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
