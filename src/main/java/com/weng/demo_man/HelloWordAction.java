@@ -31,10 +31,15 @@ public class HelloWordAction extends AnAction {
 
 	@Override
 	public void actionPerformed(AnActionEvent e) {
+		System.out.println("功能被触发");
+
+		// 在IDEA中发送系统通知
+		// e.getProject()的作用是在多个项目IDE窗口打开的时候，让通知只在当前项目的IDE窗口右下角显示
+		Notifications.Bus.notify(new Notification("HelloWorldPlugin", "欢迎来到插件世界！", NotificationType.INFORMATION), e.getProject());
+
+
 		Project project1 = e.getData(PlatformDataKeys.PROJECT);
 		Messages.showMessageDialog(project1, "<br>Say hello<br/> world ~", "Info", Messages.getInformationIcon());
-
-
 		DMNotifier.notifyError(null, "Hi Balloons Notifications.<br/> 23.9.24");
 
 

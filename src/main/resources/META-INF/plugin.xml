@@ -73,9 +73,12 @@
                 icon="com.weng.demo_man.ui.DMIcons.DMIcon"
                 description="Show hello world with pop window">
             <add-to-group group-id="HelpMenu" anchor="last"/>
+            <!-- 该标签表示通过快捷键触发Action，注意快捷键可能会冲突，导致功能无法被触发，更换绑定的快捷键即可 -->
+            <keyboard-shortcut first-keystroke="alt shift 4" keymap="$default"/>
         </action>
     </actions>
 
     <!--     integrated plugins       -->
     <xi:include href="/config_data/inte_code_count/inte_cc.xml" xpointer="xpointer(/idea-plugin/*)"/>
+    <xi:include href="/config_data/int_coding_counter/inte_coding_counter.xml" xpointer="xpointer(/idea-plugin/*)"/>
 </idea-plugin>
