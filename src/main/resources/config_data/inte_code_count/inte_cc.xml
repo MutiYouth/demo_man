@@ -1,0 +1,17 @@
+<!-- included by /META-INF/plugin.xml -->
+<idea-plugin>
+    <depends>com.intellij.modules.platform</depends>
+    <idea-version since-build="222"/>
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="CodeStats" anchor="bottom" factoryClass="com.weng.demo_man.tool_wnd.CodeStatsWindow"
+                    icon="/config_data/inte_code_count/icon_count_stats/code_stats_icon.png"/>
+        <applicationConfigurable id="CodeStatsConfigurable" displayName="Code Stats" groupId="tools"
+                                 instance="com.weng.demo_man.settings.Settings"/>
+        <applicationService serviceImplementation="com.weng.demo_man.settings.Save"/>
+        <notificationGroup displayType="BALLOON" id="CodeStats" isLogByDefault="false"/>
+    </extensions>
+
+    <projectListeners>
+        <listener class="com.weng.demo_man.tool_wnd.CodeStatsWindow" topic="com.intellij.openapi.wm.ex.ToolWindowManagerListener"/>
+    </projectListeners>
+</idea-plugin>

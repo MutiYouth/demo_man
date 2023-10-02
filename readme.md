@@ -26,3 +26,7 @@ PROJECT LOCATION: https://github.com/MutiYouth/demo_man
 ### inte hatchery
 ### inte code glance pro
 ### inte code count
+* https://github.com/gk646/CodeStats
+  https://plugins.jetbrains.com/plugin/22328-codestats
+* https://github.com/maff91/Coding-Counter
+  https://plugins.jetbrains.com/plugin/10109-coding-counter
