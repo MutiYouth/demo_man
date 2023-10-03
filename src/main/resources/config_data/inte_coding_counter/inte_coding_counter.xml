@@ -1,0 +1,14 @@
+<!-- included by /META-INF/plugin.xml -->
+<idea-plugin>
+    <depends>com.intellij.modules.lang</depends>
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow
+                id="Coding Counter"
+                anchor="right"
+                factoryClass="com.weng.demo_man.ui.StatsWindowFactory"
+                icon="/config_data/inte_coding_counter/icon/ic_chart_bar.png"/>
+
+        <applicationService serviceImplementation="com.weng.demo_man.cc.CodingCounterService"/>
+        <postStartupActivity implementation="com.weng.demo_man.cc.CounterStartupActivity"/>
+    </extensions>
+</idea-plugin>

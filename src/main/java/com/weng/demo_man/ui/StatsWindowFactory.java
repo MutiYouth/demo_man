@@ -44,9 +44,10 @@ public class StatsWindowFactory implements com.intellij.openapi.wm.ToolWindowFac
         });
 
         // Updates.
-        project.getMessageBus().connect().subscribe(CodingCounterService.STATS_CHANGED, stats -> {
-            ApplicationManager.getApplication().invokeLater(() -> codingCounterWindow.updateData(stats));
-        });
+        // project.getMessageBus().connect().subscribe(CodingCounterService.STATS_CHANGED, (stats) -> {
+        //     ApplicationManager.getApplication().invokeLater(() -> codingCounterWindow.updateData(stats));
+        // });
+
         codingCounterWindow.updateData(CodingCounterService.getInstance().getStats());
         return windowContent;
     }
