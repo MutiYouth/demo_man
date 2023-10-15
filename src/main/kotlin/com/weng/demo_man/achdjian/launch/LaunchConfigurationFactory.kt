@@ -5,10 +5,10 @@ import com.intellij.openapi.project.Project
 import com.weng.demo_man.achdjian.ui.ICON_LAUNCH
 
 object IDs {
-    val ID = "ROS.launch"
-    val FACTORY = "ROS.launch.factory"
-    val DISPLAY_NAME = "ROS launch"
-    val DESCRIPTION = "Run ROS launch file"
+    const val ID = "ROS.launch"
+    const val FACTORY = "ROS.launch.factory"
+    const val DISPLAY_NAME = "ROS launch"
+    const val DESCRIPTION = "Run ROS launch file"
 }
 
 
@@ -18,7 +18,7 @@ class LaunchConfigurationFactory(val configurationType: LaunchConfigurationType)
 
     override fun getSingletonPolicy() = RunConfigurationSingletonPolicy.SINGLE_INSTANCE_ONLY
     override fun getId() = IDs.FACTORY
-
+    override fun getName() = IDs.DISPLAY_NAME
 }
 
 class LaunchConfigurationType : ConfigurationTypeBase(IDs.ID, IDs.DISPLAY_NAME, IDs.DESCRIPTION, ICON_LAUNCH) {

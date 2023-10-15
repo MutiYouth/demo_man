@@ -233,7 +233,7 @@
         <xs:annotation>
             <xs:documentation>
                 Defines parameter to be set on the Parameter Server as given value, from textfile, binfile or command output.
-                Inside of a node tag, parameter is treated as a private.
+                Inside a node tag, parameter is treated as a private.
             </xs:documentation>
         </xs:annotation>
         <xs:complexType>

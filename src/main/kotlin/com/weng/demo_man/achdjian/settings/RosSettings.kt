@@ -119,5 +119,5 @@ class RosSettings : BaseComponent, Configurable {
     }
 
 
-    override fun getDisplayName() = "ROS"
+    override fun getDisplayName() = "DM ROS"
 }

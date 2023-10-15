@@ -20,18 +20,18 @@ class LaunchEditor(project: Project) : SettingsEditor<LaunchConfiguration>() {
     private val rosMasterPort = IntegerField("11311", 0, 65535)
     private val screen = JCheckBox("Force output of all local nodes to screen")
 
-    //    private val log = JCheckBox("Force output of all local nodes to log")
+    // private val log = JCheckBox("Force output of all local nodes to log")
     private val wait = JCheckBox("wait for master to start before launching")
     private val verbose = JCheckBox("verbose printing")
-//    private val loggerLevel = ComboBox<String>()
+    // private val loggerLevel = ComboBox<String>()
 
     init {
-//        loggerLevel.addItem("debug")
-//        loggerLevel.addItem("info")
-//        loggerLevel.addItem("warn")
-//        loggerLevel.addItem("error")
-//        loggerLevel.addItem("fatal")
-//        loggerLevel.selectedItem = "info"
+       // loggerLevel.addItem("debug")
+       // loggerLevel.addItem("info")
+       // loggerLevel.addItem("warn")
+       // loggerLevel.addItem("error")
+       // loggerLevel.addItem("fatal")
+       // loggerLevel.selectedItem = "info"
 
         rosMasterPort.value = 11311
     }
@@ -41,10 +41,10 @@ class LaunchEditor(project: Project) : SettingsEditor<LaunchConfiguration>() {
         launchConfiguration.rosMasterAddr = rosMasterAddr.text
         launchConfiguration.rosMasterPort = rosMasterPort.value
         launchConfiguration.screen = screen.isSelected
-//        launchConfiguration.log=log.isSelected
+        // launchConfiguration.log=log.isSelected
         launchConfiguration.wait = wait.isSelected
         launchConfiguration.verbose = verbose.isSelected
-//        launchConfiguration.logLevel=loggerLevel.selectedItem as String
+        // launchConfiguration.logLevel=loggerLevel.selectedItem as String
     }
 
     override fun resetEditorFrom(launchConfiguration: LaunchConfiguration) {
