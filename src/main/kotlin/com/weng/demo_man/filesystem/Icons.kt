@@ -11,7 +11,7 @@ object Icons {
     val package_file by lazy { IconLoader.getIcon("/config_data/inte_hatchery/icons/packagefile.svg", cl) }
     val broken_resource by lazy { IconLoader.getIcon("/config_data/inte_hatchery/icons/broken_resource.svg", cl) }
     val ros by lazy { IconLoader.getIcon("/config_data/inte_hatchery/icons/ros.svg", cl) }
-    val ros_file by lazy { IconLoader.getIcon("/config_data/inte_hatchery/icons/bat.png", cl) }
+    val ros_file by lazy { IconLoader.getIcon("/config_data/inte_hatchery/icons/bat.svg", cl) }
     val ros_folder by lazy { IconLoader.getIcon("/config_data/inte_hatchery/icons/rosFolder.svg", cl) }
     val launch_dir by lazy { IconLoader.getIcon("/config_data/inte_hatchery/icons/egg.svg", cl) }
     val catkin_file by lazy { IconLoader.getIcon("/config_data/inte_hatchery/icons/stork.svg", cl) }
