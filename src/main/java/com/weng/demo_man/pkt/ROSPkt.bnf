@@ -1,0 +1,115 @@
+{
+  parserClass="com.weng.demo_man.pkt.parser.ROSPktParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="ROSPkt"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.weng.demo_man.pkt.psi"
+  psiImplPackage="com.weng.demo_man.pkt.psi.impl"
+
+  elementTypeHolderClass="com.weng.demo_man.pkt.psi.ROSPktTypes"
+  elementTypeClass="com.weng.demo_man.pkt.psi.ROSPktElementType"
+  tokenTypeClass="com.weng.demo_man.pkt.psi.ROSPktTokenType"
+
+  psiImplUtilClass="com.weng.demo_man.pkt.psi.impl.ROSPktPsiImplUtil"
+
+  extends(".*_field")=field
+  extends(".*_field_frag")=field_frag
+  extends(".*_type")=type
+}
+
+rosPktFile ::= sectioned_item_* section?
+
+private sectioned_item_ ::= (section? separator)
+
+section ::= (field_component_|comment|CRLF)* {
+    methods=[getFields]
+}
+
+comment ::= LINE_COMMENT {
+    methods=[getAnnotationIds]
+}
+
+private type_ ::= (CUSTOM_TYPE|KEYTYPE)
+
+separator ::= SERVICE_SEPARATOR
+
+const ::= (NEG_OPERATOR? NUMBER | STRING) {
+    methods=[getBestFit]
+}
+
+fake type ::= type_ (LBRACKET NUMBER? RBRACKET)? {
+    mixin="com.weng.demo_man.pkt.psi.impl.ROSPktTypeBaseImpl"
+    implements="com.weng.demo_man.pkt.psi.ROSPktTypeBase"
+    methods=[isComplete]
+}
+
+private type_valid_ ::= (array_type|short_type)
+
+private type_any_ ::= (array_type|type_frag|short_type)
+
+array_type ::= type_ LBRACKET NUMBER? RBRACKET {
+    extends="type"
+    elementType="type"
+}
+
+short_type ::= type_ {
+    extends="type"
+    elementType="type"
+}
+
+// fragments are like their parallels, but they are missing certain things from them, and therefore cannot be complete.
+type_frag ::= type_ LBRACKET NUMBER? {
+    mixin="com.weng.demo_man.pkt.psi.impl.ROSPktTypeBaseImpl"
+    implements="com.weng.demo_man.pkt.psi.ROSPktTypeBase"
+}
+
+label ::= NAME {
+    mixin="com.weng.demo_man.pkt.psi.impl.ROSPktIdentifierImpl"
+    implements="com.weng.demo_man.pkt.psi.ROSPktIdentifier"
+    methods=[set getName]
+}
+
+private field_component_ ::= (const_field|const_field_frag|short_field|short_field_frag)
+
+fake field ::= type_valid_ label (CONST_ASSIGNER const)? {
+    mixin="com.weng.demo_man.pkt.psi.impl.ROSPktFieldBaseImpl"
+    implements="com.weng.demo_man.pkt.psi.ROSPktFieldBase"
+    methods=[getTypeBase isComplete]
+}
+
+fake field_frag ::= type_any_ (label (CONST_ASSIGNER | const)?)? {
+    mixin="com.weng.demo_man.pkt.psi.impl.ROSPktFieldBaseImpl"
+    implements="com.weng.demo_man.pkt.psi.ROSPktFieldBase"
+    methods=[getTypeBase]
+}
+
+short_field ::= type_valid_ label {
+    extends="field"
+    elementType="field"
+}
+
+const_field ::= type_valid_ label CONST_ASSIGNER const {
+    extends="field"
+    elementType="field"
+}
+
+short_field_frag ::= type_any_ label? {
+    extends="field_frag"
+    elementType="field_frag"
+}
+
+/*
+    long fragment. Note the (CONST_ASSIGNER const | CONST_ASSIGNER | const) part.
+    why isn't it "CONST_ASSIGNER? const?"?
+    In the above scenario, if both are present, we might get a valid long field which is already covered due to ordering.
+    However, if the type is a fragment, the scenario where both const and assigner are present must be covered.
+    If both are missing, we might get a valid field, this time short. If we allow this one to cover it
+    (rather than the short fragment), it will hide the valid field type.
+    Thus, we get sort of an OR left.
+ */
+const_field_frag ::= type_any_ label (CONST_ASSIGNER const | CONST_ASSIGNER | const) {
+    extends="field_frag"
+    elementType="field_frag"
+}

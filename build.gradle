@@ -4,14 +4,30 @@ plugins {
     id("org.jetbrains.intellij") version "1.15.0"
 }
 
+
+//String pluginVersion = '0.1.7'
+//String pluginIndex = 'ros-integrate'
+String changes_texts = new File("doc/inte_ros_integrate/changelog.html").text
+
+
 group = "com.weng"
-version = "0.1-SNAPSHOT"
+version = "0.4-SNAPSHOT"
+//group pluginIndex
+//version pluginVersion
+
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'org.jetbrains.intellij'
+
+sourceCompatibility = 17
+
 
 repositories {
     mavenCentral()
 }
 dependencies {
     implementation("org.projectlombok:lombok:1.18.28")
+    //testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
 // Configure Gradle IntelliJ Plugin
@@ -20,12 +36,24 @@ intellij {
     version.set("2022.2.5")
     type.set("IC") // Target IDE Platform
 
-    plugins.set(listOf(/* Plugin Dependencies */))
+//    plugins.set(listOf(/* Plugin Dependencies */))
+    updateSinceUntilBuild.set(false)
 }
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+            srcDir 'src/main/gen'
+        }
+    }
+}
+
 
 tasks {
     // Set the JVM compatibility versions
-    withType<JavaCompile> {
+    /*
+   withType<JavaCompile> {
         sourceCompatibility = "17"
         targetCompatibility = "17"
         options.encoding = "UTF-8"
@@ -33,10 +61,13 @@ tasks {
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         kotlinOptions.jvmTarget = "17"
     }
+    */
 
     patchPluginXml {
         sinceBuild.set("222")
         untilBuild.set("232.*")
+        pluginDescription.set("Extends IntelliJ-Based IDEs with ROS specific development tools")
+        changeNotes.set(changes_texts)
     }
 
     signPlugin {
@@ -49,4 +80,3 @@ tasks {
         token.set(System.getenv("PUBLISH_TOKEN"))
     }
 }
-

@@ -1,0 +1,47 @@
+<!-- included by /META-INF/plugin.xml -->
+<idea-plugin>
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- ROS packet file definitions -->
+        <fileType name="ROSMsg" implementationClass="com.weng.demo_man.pkt.file.ROSMsgFileType"
+                  language="ROSPkt" extensions="msg" fieldName="INSTANCE"/>
+        <fileType name="ROSSrv" implementationClass="com.weng.demo_man.pkt.file.ROSSrvFileType"
+                  language="ROSPkt" extensions="srv" fieldName="INSTANCE"/>
+        <fileType name="ROSAct" implementationClass="com.weng.demo_man.pkt.file.ROSActFileType"
+                  language="ROSPkt" extensions="action" fieldName="INSTANCE"/>
+
+        <!-- language features -->
+        <lang.parserDefinition language="ROSPkt" implementationClass="com.weng.demo_man.pkt.lang.ROSPktParserDefinition"/>
+        <lang.syntaxHighlighterFactory language="ROSPkt" implementationClass="com.weng.demo_man.pkt.highlight.ROSPktSyntaxHighlighterFactory"/>
+        <lang.commenter language="ROSPkt" implementationClass="com.weng.demo_man.pkt.ROSPktCommenter"/>
+        <lang.refactoringSupport language="ROSPkt" implementationClass="com.weng.demo_man.pkt.ROSPktRefactoringSupportProvider"/>
+        <lang.braceMatcher language="ROSPkt" implementationClass="com.weng.demo_man.pkt.ROSPktBraceMatcher"/>
+        <lang.elementManipulator forClass="com.weng.demo_man.pkt.psi.ROSPktType"
+                                 implementationClass="com.weng.demo_man.pkt.ROSPktTypeElementManipulator"/>
+        <psi.referenceContributor language="ROSPkt" implementation="com.weng.demo_man.pkt.ROSMsgFileReferenceContributor"/>
+        <psi.referenceContributor language="ROSPkt" implementation="com.weng.demo_man.pkg.ref.ROSPktTypeReferenceContributor"/>
+        <completion.contributor language="ROSPkt" implementationClass="com.weng.demo_man.pkt.ROSPktCompletionContributor"/>
+        <spellchecker.support language="ROSPkt" implementationClass="com.weng.demo_man.pkt.ROSPktSpellcheckingStrategy"/>
+        <colorSettingsPage implementation="com.weng.demo_man.pkt.highlight.ROSPktColorSettings"/>
+        <nameSuggestionProvider implementation="com.weng.demo_man.pkt.ROSPktNameSuggestionProvider" />
+        <moveFileHandler implementation="com.weng.demo_man.pkt.MovePktFileHandler"/>
+        <renameHandler implementation="com.weng.demo_man.pkt.ROSPktTypeInplaceRenameHandler"/>
+
+        <!-- language inspections and annotations -->
+        <annotator language="ROSPkt" implementationClass="com.weng.demo_man.pkt.annotate.ROSPktAnnotator"/>
+        <localInspection language="ROSPkt" implementationClass="com.weng.demo_man.pkt.inspection.CamelCaseInspection"
+                         level="WARNING" enabledByDefault="true" shortName="type-not-camelcase"
+                         groupName="ROS" displayName="Type not in PascalCase"/>
+        <localInspection language="ROSPkt" implementationClass="com.weng.demo_man.pkt.inspection.SnakeCaseInspection"
+                         level="WARNING" enabledByDefault="true" shortName="label-not-snake-case"
+                         groupName="ROS" displayName="Type not in snake_case"/>
+        <localInspection language="ROSPkt" implementationClass="com.weng.demo_man.pkt.inspection.DeprecatedTypeInspection"
+                         level="WARNING" enabledByDefault="true" shortName="deprecated-type"
+                         groupName="ROS" displayName="Deprecated type"/>
+        <localInspection language="ROSPkt" implementationClass="com.weng.demo_man.pkt.inspection.AvoidStdMsgsInspection"
+                         level="WARNING" enabledByDefault="true" shortName="avoid-std-msgs"
+                         groupName="ROS" displayName="Redundant std_msg type"/>
+        <localInspection language="ROSPkt" implementationClass="com.weng.demo_man.pkt.inspection.RedundantStampingInspection"
+                         level="WEAK WARNING" enabledByDefault="true" shortName="redundant-stamping"
+                         groupName="ROS" displayName="Redundant header stamp"/>
+    </extensions>
+</idea-plugin>

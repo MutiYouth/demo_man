@@ -1,0 +1,9 @@
+<?xml version='1.0'?>
+<list>
+    <option label="ROSMSG_SERVICE_SEPARATOR">
+        <value>
+            <option label="FOREGROUND" value="0F9795"/>
+            <option label="FONT_TYPE" value="1"/>
+        </value>
+    </option>
+</list>

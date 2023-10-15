@@ -1,0 +1,16 @@
+<!-- included by /META-INF/plugin.xml -->
+<idea-plugin>
+    <projectListeners>
+        <listener class="com.weng.demo_man.pkg.ROSIndexChangeListener" topic="com.intellij.openapi.vfs.newvfs.BulkFileListener"/>
+    </projectListeners>
+
+    <extensionPoints>
+        <extensionPoint name="packageFinder" interface="com.weng.demo_man.pkg.ROSPackageFinder"/>
+        <extensionPoint name="exportLangHelper" interface="com.weng.demo_man.pkg.xml.annotate.ExportLangHelper"/>
+    </extensionPoints>
+
+    <extensions defaultExtensionNs="com.weng.demo_man">
+        <packageFinder implementation="com.weng.demo_man.pkg.ROSWorkspacePackageFinder"/>
+        <packageFinder implementation="com.weng.demo_man.pkg.ROSCompiledPackageFinder"/>
+    </extensions>
+</idea-plugin>

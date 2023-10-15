@@ -1,0 +1,398 @@
+<p>0.1.6</p>
+<ul>
+    <li><b>package.xml</b>
+        <ul>
+            <li>version ranges are now fully supported:
+                <ul>
+                    <li>all version range attributes are suggested when editing/adding a dependency</li>
+                    <li>The autocompletion is smart and only suggests valid attributes
+                        (for example, if you have version_lt, it will not suggest version_lte)</li>
+                    <li>it also tries to suggest a value for each attribute which is the current version of the package</li>
+                    <li>invalid version values are annotated as errors (for example 1.0.a is not a version)</li>
+                    <li>conflicting version attributes are also annotated (version_lte and version_lt for example)</li>
+                    <li>similar dependency tags with different version ranges are pointed out in an inspection
+                        (for example test_depend->std_msgs vs depend->std_msgs)</li>
+                    <li>if a package is in a version unsupported by a package,
+                        the dependency tag will point it out in an inspection.</li>
+                    <li>the annotations and inspections also have fixes:
+                        <ul>
+                            <li>remove information from the dependency tag until its valid</li>
+                            <li>modify information from the tag so the tag is valid,
+                                and tries to preserve the information as much as possible.</li>
+                            <li>remove the dependency tag completely</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>export tag is now fully supported
+                <ul>
+                    <li>the tag can now be auto-completed</li>
+                    <li>when reformatting the file, the entire contents of the tag are preserved and in order</li>
+                    <li>autocompletion for architecture_independent subtag</li>
+                    <li>non-empty architecture_independent tags are annotated</li>
+                    <li>multiple architecture_independent tags are annotated</li>
+                    <li>architecture dependent packages with this tags are marked by an inspection</li>
+                    <li>autocompletion for build_type tag along with the value options</li>
+                    <li>unknown build types are marked in an inspection</li>
+                    <li>multiple build_type tags are annotated (with both toggled on)</li>
+                    <li>autocompletion for deprecated tags</li>
+                    <li>multiple deprecated tags are annotated</li>
+                    <li>dependency tags that point to deprecated packages are marked via inspection
+                        and contain the text in the deprecated tag</li>
+                    <li>autocompletion for message_generator tag</li>
+                    <li>empty message_generator tags are annotated</li>
+                    <li>multiple message_generator tags are annotated</li>
+                    <li>a currently dud inspection for invalid generators is also added,
+                        you can implement it via a plugin</li>
+                    <li>autocompletion for metapackage tag</li>
+                    <li>multiple metapackage tags are annotated</li>
+                    <li>non-empty metapackage tags are annotated</li>
+                    <li>dependency tags to metapackages from concrete packages are marked via an inspection</li>
+                    <li>forbidden dependency tags within metapackages (like test_depend) are marked via inspection</li>
+                    <li>fixes for export sub-tags:
+                        <ul>
+                            <li>remove sub-tag</li>
+                            <li>remove related dependency tag</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>you can configure via settings what website Ctrl+Clicking a license will bring you:
+                TL;DR Legal (default) or the official documentation in the OSI website</li>
+            <li>if the license requires a file, a warning is raised on the tag.
+                There is also an automatic fix that downloads a license file according to your license and links it.
+                This fix provides a dialogue where the user fills in info to replace.</li>
+            <li>in format 3, file attribute is suggested in license tag</li>
+            <li>the value of the file attribute auto-completes to file path from containing directory</li>
+            <li>the file name in the attribute can be Ctrl+Clicked to jump to that page</li>
+            <li>if file attribute is found in format 2 or less, an inspection points it out and suggests either
+                upgrading to newer format or removing file attribute</li>
+            <li>version tag now allows autocompletion for compatibility in format >= 3</li>
+            <li>compatibility value as the same completion as the version tag value</li>
+            <li>compatibility value also has the same annotation for validity</li>
+            <li>if the compatibility version is higher than the actual version, the attribute is annotated and suggests
+                either flipping compatibility and version or removing compatibility</li>
+            <li>full support of the condition attribute
+                <ul>
+                    <li>in format >=3, the condition attribute is suggested for build_type, all group tags, and all dependency tags</li>
+                    <li>the value in the condition attribute is now considered its own language.
+                        It has its own custom highlighting and can even be opened as its own page for editing</li>
+                    <li>the highlighting colors can be customised in the color settings menu.</li>
+                    <li>parentheses opened are now matched with closing ones</li>
+                    <li>when typing literals, auto-completion might suggest and/or</li>
+                    <li>if $ is typed, all available environment variables are suggested</li>
+                    <li>variables and literals that contain illegal characters are annotated.
+                        A fix cleaning them up is also suggested</li>
+                    <li>if literals are found in a series, they are annotated, and a "prepend logic" fix is suggested</li>
+                    <li>if condition is evaluated to false, many inspections are toggled off:
+                        "Dependency not found" is toggled off,
+                        "Conflicting Dependencies" ignores false conditions and checks that the conditions are the same,
+                        "Dependency on deprecated package" is toggled off,
+                        "Different dependency versions" ignores false conditions,
+                        "Dependency on outdated package" is toggled off</li>
+                    <li>ignored dependency tags do not get package completion</li>
+                    <li>if a condition attribute is found in format < 3, the attribute is marked by an inspection,
+                        and a "remove condition" fix is suggested</li>
+                    <li>ignored tags (those that have a condition resolving to false) are "grayed" out
+                        (the color is configurable)</li>
+                </ul>
+            </li>
+            <li>full support for group tags
+                <ul>
+                    <li>auto-completion for group tags member_of_group and group_depend</li>
+                    <li>if group tags are used in format <3, they are annotated accordingly</li>
+                    <li>reformat fix respects group tags</li>
+                    <li>empty group tags are annotated</li>
+                    <li>duplicate group tags are also annotated. This respects conditionals</li>
+                    <li>if a group dependency points to an empty group, this is pointed out in an inspection</li>
+                    <li>group tag value completion now suggests existing group names</li>
+                    <li>Ctrl+Clicking on a group_depend value will show all members to the group</li>
+                    <li>Ctrl+Clicking on a member_of_group value will show all packages that depend on this group</li>
+                </ul>
+            </li>
+            <li>unsupported tags outside export are annotated accordingly and two fixes are suggested:
+                delete tag and move to export.</li>
+            <li>if the package has no buildtool dependency, it will be annotated. The fix suggested will be to add a new
+                buildtool_depend tag and allow the user to put in a value</li>
+        </ul>
+    </li>
+    <li><b>Bug Fixes</b>
+        <ul>
+            <li>packages no longer disappear randomly from the libraries tab.</li>
+            <li>license values now properly link to website on CTRL+Click</li>
+            <li>.msg,.srv,.action files
+                <ul>
+                    <li>.msg comments are now found after a number const and multiple spaces</li>
+                    <li>byte and char can now get numerical constants</li>
+                    <li>completing a package name now triggers chain completion</li>
+                </ul>
+            </li>
+            <li>empty ROS path or workspace in ROS settings will no longer index the entire computer</li>
+            <li>"UnsupportedOperation" error when completing package.xml dependencies fixed</li>
+            <li>maintainer and author "FixContributor" intention now repairs bad emails</li>
+            <li>package.xml intentions now add elements in the correct order</li>
+            <li>"ArrayIndexOutOfBounds" error that happens spontaneously when a package.xml is open fixed</li>
+            <li>libraries will no longer disappear after reloading CMake in CLion</li>
+            <li>reopening CLion will also keep the CMake relevant and will not trigger the
+                "file is not in project" warning</li>
+            <li>changing project should not cause a bunch of errors relating to "disposal"</li>
+            <li>libraries and package indexing now both work correctly. They both will not disappear randomly</li>
+        </ul>
+    </li>
+    <li>updated the descriptions for all inspections and intentions</li>
+</ul>
+<p>0.1.5</p>
+<ul>
+    <li><b>initial support for package manifests (package.xml files)</b>
+        <ul>
+            <li>package.xml files can be ignored by ROS plugin via intention (it is undoable)</li>
+            <li>excluded package.xml files can also be edited from ROS settings</li>
+            <li>added annotations with fixes for:
+                <ul>
+                    <li>missing name</li>
+                    <li>missing version</li>
+                    <li>missing license</li>
+                    <li>missing description</li>
+                    <li>missing maintainer</li>
+                    <li>invalid format</li>
+                    <li>invalid name</li>
+                    <li>invalid package version</li>
+                    <li>invalid maintainer</li>
+                    <li>invalid author</li>
+                    <li>invalid url</li>
+                    <li>too many name tags</li>
+                    <li>too many description tags</li>
+                    <li>too many version tags</li>
+                    <li>name not matching package name</li>
+                    <li>invalid url type</li>
+                    <li>the todo license</li>
+                    <li>package names with capital letters</li>
+                    <li>self-dependency</li>
+                    <li>unresolved dependency</li>
+                    <li>empty dependency</li>
+                    <li>outdated/predated dependency tags</li>
+                    <li>conflicting dependency tags</li>
+                </ul>
+            </li>
+            <li>added inspections with fixes for:
+                <ul>
+                    <li>outdated format</li>
+                </ul>
+            </li>
+            <li>common licenses are linked to their definition page,
+                which can be navigated to by Ctrl+Click or the "Open in Browser" action</li>
+            <li>the urls also navigate to their website via Ctrl+Click</li>
+            <li>added autocompletion for:
+                <ul>
+                    <li>all tag names save for &lt;export&gt; and format 3's group tags</li>
+                    <li>the URL type attribute (and attribute name)</li>
+                    <li>common licenses</li>
+                    <li>maintainer and author email attribute name</li>
+                    <li>the package tag</li>
+                    <li>dependency values (existing packages and rosdep keys).
+                        Completion is aware of existing dependencies to prevent conflicts</li>
+                </ul>
+            </li>
+            <li>the description tag value is injected with HTML language</li>
+            <li>package names and dependencies are refactor-able just like other package related entities</li>
+        </ul>
+    </li>
+    <li>rosdep keys support (dependencies that are not ROS packages)
+        <ul>
+            <li>loads keys both in an online fashion (fetching source lists)
+                and offline fashion (load from saved cache)</li>
+            <li>saved keys are updated when used and can be modified from settings</li>
+            <li>the source lists are by default the ones used by standard ROS but can be modified from settings</li>
+            <li>rosdep keys are considered packages, and have their own icon</li>
+        </ul>
+    </li>
+    <li>adding messages from another package adds a build dependency to that package (when completion is used)</li>
+</ul>
+<p>0.1.4</p>
+<ul>
+    <li><b>The the root workspace directory may now be outside the project.</b>
+        <ul>
+            <li>The workspace is automatically detected.</li>
+            <li>The workspace can be manually set from the ROS settings</li>
+        </ul>
+    </li>
+    <li>Additional package paths outside the workspace can be specified
+        <ul>
+            <li>By default, uses the path specified by $ROS_PACKAGE_PATH</li>
+            <li>This value can be altered from the ROS Settings</li>
+            <li>IDE can also deal with complete windows paths</li>
+        </ul>
+    </li>
+    <li><b>ROS Settings</b>
+        <ul>
+            <li>ROS Root setting is now ROS Path, which should be the path to the directory
+                containing all ROS stuff (for example /opt/ros/kinetic)
+            </li>
+            <li>Workspace path can either be browsed or manually typed</li>
+            <li>Additional paths is displayed as a UNIX path list, which can be directly typed,
+                or altered as a list.
+            </li>
+            <li>The tool is smart and can deal with Windows paths as well as UNIX paths.</li>
+            <li>When using the list modification tab, items can directly typed, browsed, or duplicated</li>
+            <li>Additional paths field can also be reset to $ROS_PACKAGE_PATH with a new reset button</li>
+            <li>Moved ROS Settings tab under Languages & Frameworks</li>
+        </ul>
+    </li>
+    <li>The ROS library can be accessed in the Project structure window from the External Libraries tab</li>
+    <li>String constants can now be explicitly searched via the "Search in String literals" option</li>
+    <li>"New Message" dialog now prevent trying to create new messages in the ROS directory</li>
+    <li>Cleaned package completion suggestions so that only packages that contain messages will be suggested.</li>
+    <li>Added more words to the ROS dictionary</li>
+    <li><b>Bug fixes</b>
+        <ul>
+            <li>Fixed bug where packages would not get the correct icons</li>
+            <li>Field fragments can now be properly suppressed</li>
+            <li>Header inspection now inspects through fragments as well</li>
+            <li>Fixed bug where package indexing would reset for projects open for too long</li>
+            <li>Cloned git repositories (and any copied directories) are now properly examined for packages</li>
+            <li>field names are no longer unique to their files but instead to their "section" in the packet file,
+                which allows duplicate names in the file but not in the same section.
+            </li>
+            <li>the shortened version of headers is now valid if it is the first non-const field in its section</li>
+            <li>the automatic completion also respects the new rules of sections and const fields.</li>
+            <li>comments are now recognised after numerical constants</li>
+            <li>constants "." and "-." are now automatically categorised as string constants.
+                Adding a number after them changes their interpretation to floating point numbers (with optional
+                negation)
+            </li>
+            <li>Fixed some Log errors</li>
+            <li>Fixed one IDE freeze scenario. If your IDE still freezes please report it on the issue tracker.</li>
+        </ul>
+    </li>
+</ul>
+<p>0.1.3</p>
+<ul>
+    <li><b>Added settings tab for ROS</b>. For now only includes settings for the ROS Root, but will be expanded in
+        the future.
+    </li>
+    <li>The ROS Root may be changed to any directory, and is by default $ROS_ROOT</li>
+    <li>The settings are persistent and exist per project</li>
+    <li><b>ROS Packages in the ROS root are now supported</b>:
+        <ul>
+            <li>these packages have a unique icon</li>
+            <li>all functionality of the ROS packages applies to them.</li>
+            <li>these packages rely on the ROS Root configuration</li>
+        </ul>
+    </li>
+    <li>deprecated builtin types are now properly displayed, though if you use them in your sources, the IDE will
+        raise warnings (see inspections)
+    </li>
+    <li><b>ROS Inspections</b>
+        <ul>
+            <li>added inspection that checks for deprecated types in message definition</li>
+            <li>added inspection that checks for types in the form of std_msgs/BUILTIN</li>
+            <li>added inspection that checks for redundant use of stamped messages in message definition</li>
+            <li>this inspection is configurable based on whether or not it is a list, array, or plain object</li>
+        </ul>
+    </li>
+    <li><b>ROS Intentions</b>
+        <ul>
+            <li>deprecated-type can be fixed by updating the type to its modern counterpart</li>
+            <li>avoid-std-msgs-builtin can be fixed by converting the type to its builtin counterpart</li>
+            <li>redundant-stamping can be fixed by using the unstamped variant of the given type</li>
+        </ul>
+    </li>
+    <li>Fixed some bugs with inspection suppression in packet files</li>
+    <li>fixed bug where ROS packages did not display the proper icon</li>
+</ul>
+<p>0.1.2</p>
+<ul>
+    <li>added support for *.action files - equipped with all inspections for ROS packets and with its own file
+        icon
+    </li>
+    <li>initial support for ROS Packages:
+        <ul>
+            <li>introduced the concept of ROSPackage - the package containing all the files for a module in ROS!
+            </li>
+            <li>packages also have their own icon</li>
+            <li>ROSPackages have their own qualified names, used to properly search for messages within packages
+            </li>
+            <li>message autocompletion will add packages when selected. Additional package info will appear as
+                well
+            </li>
+            <li>autocompletion for ROS packages which will also trigger another message autocompletion query</li>
+            <li>autocompletion for messages now respects package names and will search within them</li>
+            <li>package prefixes within files can be used to refactor packages</li>
+            <li>renaming directories will also refactor files accordingly</li>
+        </ul>
+    </li>
+    <li>moving message files will also change their references accordingly</li>
+</ul>
+<p>0.1.1</p>
+<ul>
+    <li>renamed the ROSMsg language to ROSPkt - short for ROS Packet</li>
+    <li>added support for *.srv files - equipped with all inspections for ROS messages and with its own file icon
+    </li>
+</ul>
+<p>0.1</p>
+<ul>
+    <li>Added the ROSMsg language - a language for ROS Messages</li>
+    <li>ROSMsg has its own highlighting which can be customised</li>
+    <li>*.msg has its own file icon (will be extended to *.srv in due time)</li>
+    <li>ROSMsg contains a commenter (default: Ctrl+/ like all other commentators)</li>
+    <li>Basic refactoring support for field names</li>
+    <li>Refactoring support for msg types</li>
+    <li>Jump-to-definition action by Ctrl clicking on the field type</li>
+    <li>ROSMsg Autocompletion:
+        <ul>
+            <li>non-numerical key-types: string, time, duration appear when writing a field type</li>
+            <li>Header std_msg type appears as well</li>
+            <li>numerical key-types: float, uint, int appear without their data size.<br/>
+                When selected, a data-size auto-completion list is shown and a default is auto-written
+            </li>
+            <li>IDE will search for other message types defined in-project, and will display them</li>
+            <li>when writing a field name, IDE will use its respective type to suggest a variety of possible names
+            </li>
+            <li>Support for bracket completion</li>
+        </ul>
+    </li>
+    <li>ROSMsg Annotation:
+        <ul>
+            <li>added check for service separators, raises error if there are too many (1 or more)</li>
+            <li>added check for in-package custom field types,
+                raises errors if IDE could not find needed message file in project
+            </li>
+            <li>added check for custom-types, raises error if the message uses itself (recursion is not allowed!)
+            </li>
+            <li>added another check for custom-types, raises error if they use illegal characters</li>
+            <li>added check for header fields, raises error if "Header" is found as a field type but not as the
+                first one
+            </li>
+            <li>added check for constants, raises error if it finds an array with a constant</li>
+            <li>added another check for constants, raises error if a custom-type, time, or duration have a
+                constant
+            </li>
+            <li>added yet another check for constants, raises error if the field type cannot handle the provided
+                constant
+            </li>
+            <li>added check for field names, raises error is a certain field name is used twice in a message</li>
+            <li>added another check for field names, raises error if the name uses illegal characters</li>
+            <li>added inspection which checks that field types are written in CamelCase</li>
+        </ul>
+    </li>
+    <li>ROSMsg Intention and Fixes:
+        <ul>
+            <li>message-is-not-defined can be fixed by adding a new message file. This intention has its own
+                dialog
+            </li>
+            <li>header-not-first-field can be fixed by adding a prefix to the type</li>
+            <li>type-cannot-handle-const and illegal-const-type can be fixed by changing the keytype accordingly
+            </li>
+            <li>too-many-service-separators can be fixed by either removing that specific separator, or all of them
+                if more than one are present
+            </li>
+            <li>array-with-constant can be fixed by removing the array part</li>
+            <li>array-with-constant and illegal-const-type can be fixed by removing the constant</li>
+            <li>self-containing-message can be fixed by removing the field</li>
+            <li>duplicate-name and illegal-field-name can be fixed by renaming the field</li>
+            <li>illegal-field-type can be fixed by renaming the type</li>
+            <li>not-camel-field-type can be fixed by renaming the type</li>
+            <li>named fields and comments have a spellchecker running</li>
+        </ul>
+    </li>
+</ul>

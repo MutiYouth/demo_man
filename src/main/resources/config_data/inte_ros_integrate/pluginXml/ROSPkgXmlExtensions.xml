@@ -1,0 +1,73 @@
+<!-- included by /META-INF/plugin.xml -->
+<idea-plugin>
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- condition file type definition -->
+        <fileType name="ROSCondition" implementationClass="com.weng.demo_man.pkg.xml.condition.ROSConditionFileType"
+                  fieldName="INSTANCE" language="ROSCondition" extensions="condition"/>
+        
+        <!-- language features -->
+        <lang.parserDefinition language="ROSCondition"
+                               implementationClass="com.weng.demo_man.pkg.xml.condition.lang.ROSConditionParserDefinition"/>
+        <lang.syntaxHighlighter language="ROSCondition" implementationClass="com.weng.demo_man.pkg.xml.condition.highlight.ROSConditionSyntaxHighlighter"/>
+        <lang.braceMatcher language="ROSCondition" implementationClass="com.weng.demo_man.pkg.xml.condition.ROSConditionBraceMatcher"/>
+        <psi.referenceContributor language="XML" implementation="com.weng.demo_man.pkg.xml.PackageXmlReferenceContributor"/>
+        <completion.contributor language="XML" implementationClass="com.weng.demo_man.pkg.xml.completion.PackageXmlCompletionContributor"
+                                order="before xmlNonFirst"/>
+        <completion.contributor language="ROSCondition" implementationClass="com.weng.demo_man.pkg.xml.condition.ROSConditionCompletionContributor"/>
+        <colorSettingsPage implementation="com.weng.demo_man.pkg.xml.condition.highlight.ROSConditionColorSettings"/>
+        <webBrowserUrlProvider implementation="com.weng.demo_man.pkg.xml.ROSLicenseLinkProvider"/>
+        <languageInjector implementation="com.weng.demo_man.pkg.xml.ROSPackageXmlInjector"/>
+
+        <intentionAction>
+            <className>com.weng.demo_man.pkg.xml.intention.ExcludePackageXml</className>
+            <category>ROS</category>
+        </intentionAction>
+        <intentionAction>
+            <className>com.weng.demo_man.pkg.xml.intention.UndoExcludeXml</className>
+            <category>ROS</category>
+        </intentionAction>
+
+        <!-- language inspections and annotations -->
+        <annotator language="ROSCondition" implementationClass="com.weng.demo_man.pkg.xml.condition.annotate.ROSConditionAnnotator"/>
+        <annotator language="XML" implementationClass="com.weng.demo_man.pkg.xml.annotate.PackageXmlAnnotator"/>
+        <localInspection language="XML" implementationClass="com.weng.demo_man.pkg.xml.inspection.OutdatedFormatInspection"
+                         level="WEAK WARNING" enabledByDefault="true" shortName="outdated-format"
+                         groupName="ROS" displayName="Outdated manifest format"/>
+        <localInspection language="XML" implementationClass="com.weng.demo_man.pkg.xml.inspection.DifferentDependencyVersionInspection"
+                         level="WARNING" enabledByDefault="true" shortName="different-versions"
+                         groupName="ROS" displayName="Different dependency versions"/>
+        <localInspection language="XML" implementationClass="com.weng.demo_man.pkg.xml.inspection.OutdatedDependencyInspection"
+                         level="ERROR" enabledByDefault="true" shortName="outdated-dependency"
+                         groupName="ROS" displayName="Package does not match specified versions"/>
+        <localInspection language="XML" implementationClass="com.weng.demo_man.pkg.xml.inspection.InvalidMessageGeneratorInspection"
+                         level="WARNING" enabledByDefault="false" shortName="invalid-generator"
+                         groupName="ROS" displayName="Package does not generate messages for language"/>
+        <localInspection language="XML" implementationClass="com.weng.demo_man.pkg.xml.inspection.NotArchitectureIndependentInspection"
+                         level="WARNING" enabledByDefault="true" shortName="not-architecture-independent"
+                         groupName="ROS" displayName="Package is incorrectly marked architecture independent"/>
+        <localInspection language="XML" implementationClass="com.weng.demo_man.pkg.xml.inspection.DeprecatedPackageInspection"
+                         level="WARNING" enabledByDefault="true" shortName="deprecated-package"
+                         groupName="ROS" displayName="Package is marked as deprecated"/>
+        <localInspection language="XML" implementationClass="com.weng.demo_man.pkg.xml.inspection.MetapackageDependencyInspection"
+                         level="WARNING" enabledByDefault="true" shortName="metapackage-dependency"
+                         groupName="ROS" displayName="Concrete packages may not depend on metapackages"/>
+        <localInspection language="XML" implementationClass="com.weng.demo_man.pkg.xml.inspection.ForbiddenMetapackageDependencyInspection"
+                         level="WARNING" enabledByDefault="true" shortName="forbidden-metapackage-dependency"
+                         groupName="ROS" displayName="Metapackage dependency restriction"/>
+        <localInspection language="XML" implementationClass="com.weng.demo_man.pkg.xml.inspection.UnknownBuildTypeInspection"
+                         level="WEAK WARNING" enabledByDefault="true" shortName="unknown-build-type"
+                         groupName="ROS" displayName="Unknown build type"/>
+        <localInspection language="XML" implementationClass="com.weng.demo_man.pkg.xml.inspection.UnusedFeatureInspection"
+                         level="WARNING" enabledByDefault="true" shortName="unused-feature"
+                         groupName="ROS" displayName="Unused future feature"/>
+        <localInspection language="XML" implementationClass="com.weng.demo_man.pkg.xml.inspection.LicenseFileRequiredInspection"
+                         level="WARNING" enabledByDefault="true" shortName="license-file-required"
+                         groupName="ROS" displayName="License requires full license text"/>
+        <localInspection language="XML" implementationClass="com.weng.demo_man.pkg.xml.inspection.EmptyGroupInspection"
+                         level="WARNING" enabledByDefault="true" shortName="empty-group"
+                         groupName="ROS" displayName="Dependency on a group with no members"/>
+        <localInspection language="XML" implementationClass="com.weng.demo_man.pkg.xml.inspection.PackageXmlCompletionInspection"
+                         level="ERROR" enabledByDefault="true" shortName="manifest-incomplete"
+                         groupName="ROS" displayName="Missing Elements from package.xml"/>
+    </extensions>
+</idea-plugin>

@@ -1,0 +1,20 @@
+package com.weng.demo_man.pkt;
+
+import com.intellij.openapi.util.TextRange;
+import com.intellij.psi.AbstractElementManipulator;
+import com.intellij.util.IncorrectOperationException;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import com.weng.demo_man.pkt.psi.ROSPktTypeBase;
+
+/**
+ * allows manipulations of type PSI elements. Important for rename refactoring
+ * @author Noam Dori
+ */
+public class ROSPktTypeElementManipulator extends AbstractElementManipulator<ROSPktTypeBase> {
+    @Nullable
+    @Override
+    public ROSPktTypeBase handleContentChange(@NotNull ROSPktTypeBase element, @NotNull TextRange range, String newContent) throws IncorrectOperationException {
+        return (ROSPktTypeBase) element.setName(newContent);
+    }
+}

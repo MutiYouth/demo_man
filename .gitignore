@@ -22,3 +22,8 @@ gradlew
 gradlew.bat
 .run
 gradle
+
+/plugins
+/plugins-test
+/Config
+/Config-test

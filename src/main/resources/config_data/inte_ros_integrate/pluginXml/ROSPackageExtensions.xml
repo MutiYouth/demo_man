@@ -1,0 +1,15 @@
+<!-- included by /META-INF/plugin.xml -->
+<idea-plugin>
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- package / rosdep indexers: they find packages and add them to the model -->
+        <projectService serviceInterface="com.weng.demo_man.pkg.ROSPackageManager"
+                        serviceImplementation="com.weng.demo_man.pkg.ROSPackageManagerImpl"/>
+        <projectService serviceInterface="com.weng.demo_man.pkg.ROSDepKeyCache"
+                        serviceImplementation="com.weng.demo_man.pkg.ROSDepKeyCacheImpl"/>
+
+        <postStartupActivity implementation="com.weng.demo_man.pkg.LoadROSLibrariesAndIndex"/>
+
+        <!-- model features -->
+        <iconProvider implementation="com.weng.demo_man.pkg.ROSPackageIconProvider" order="before directory"/>
+    </extensions>
+</idea-plugin>

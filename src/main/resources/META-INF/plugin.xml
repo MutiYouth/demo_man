@@ -1,5 +1,5 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
-<idea-plugin>
+<idea-plugin xmlns:xi="http://www.w3.org/2001/XInclude">
     <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
     <id>com.weng.demo_man</id>
 
@@ -20,9 +20,25 @@
     ]]>
     </description>
 
-    <!-- Product and plugin compatibility requirements.
-         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
-    <depends>com.intellij.modules.platform</depends>
+
+    <!-- ros-integrate include files -->
+    <xi:include href="/config_data/inte_ros_integrate/pluginXml/dependencies.xml" xpointer="xpointer(/idea-plugin/*)"/>
+
+    <!-- extensions defined (and sometimes used) by this plugin. note that identifies are also here. -->
+    <xi:include href="/config_data/inte_ros_integrate/pluginXml/ROSPluginExtensions.xml" xpointer="xpointer(/idea-plugin/*)"/>
+
+    <!-- misc. features not specific to the plugin model. -->
+    <xi:include href="/config_data/inte_ros_integrate/pluginXml/generalExtensions.xml" xpointer="xpointer(/idea-plugin/*)"/>
+
+    <!-- features defining the language used for packet files (*.msg, *.srv, *.action), and their functions. -->
+    <xi:include href="/config_data/inte_ros_integrate/pluginXml/ROSPktExtensions.xml" xpointer="xpointer(/idea-plugin/*)"/>
+
+    <!-- features implementing the package model used throughout ROS. -->
+    <xi:include href="/config_data/inte_ros_integrate/pluginXml/ROSPackageExtensions.xml" xpointer="xpointer(/idea-plugin/*)"/>
+
+    <!-- features implementing the manifests of ROS packages, named package.xml. -->
+    <xi:include href="/config_data/inte_ros_integrate/pluginXml/ROSPkgXmlExtensions.xml" xpointer="xpointer(/idea-plugin/*)"/>
+
 
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
