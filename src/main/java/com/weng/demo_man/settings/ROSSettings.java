@@ -28,7 +28,7 @@ public class ROSSettings implements PersistentStateComponent<ROSSettings.State> 
     private static Properties loadProperties() {
         Properties ret = new Properties();
         try {
-            ret.load(ROSSettings.class.getClassLoader().getResourceAsStream("/config_data/inte_ros_integrate/defaults.properties"));
+            ret.load(ROSSettings.class.getClassLoader().getResourceAsStream("config_data/inte_ros_integrate/defaults.properties"));
             settingsLoaded = true;
         } catch (IOException e) {
             LOG.warning("could not load configuration file, default values will not be loaded. error: " +

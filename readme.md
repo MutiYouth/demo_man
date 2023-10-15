@@ -4,7 +4,7 @@ PROJECT LOCATION: https://github.com/MutiYouth/demo_man
 
 
 ## todos:
-### hello world
+### hello world v0.1
 * ~~add an action~~ <br/>
   解决com.weng.demo_man.HelloWordAction找不到的解决方法为:
   * 将 main下的 Kotlin改为java.
@@ -20,9 +20,12 @@ PROJECT LOCATION: https://github.com/MutiYouth/demo_man
 * 中文字体
 * 内容见 1.4 of word "INTELIJ PLUGINS DEV.docx"... 
 
-### inte intelij_examples
+### inte intelij_examples v0.2
 
-### inte ros-integrate
-### inte hatchery
-### inte code glance pro
-### inte code count
+### inte hatchery v0.3
+
+### inte [ros-integrate](https://github.com/Noam-Dori/ros-integrate) v0.4
+
+### inte code glance pro v0.5
+
+### inte code count v0.6

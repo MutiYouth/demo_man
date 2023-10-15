@@ -7,7 +7,7 @@
         <projectService serviceInterface="com.weng.demo_man.pkg.ROSDepKeyCache"
                         serviceImplementation="com.weng.demo_man.pkg.ROSDepKeyCacheImpl"/>
 
-        <postStartupActivity implementation="com.weng.demo_man.pkg.LoadROSLibrariesAndIndex"/>
+        <!-- <postStartupActivity implementation="com.weng.demo_man.pkg.LoadROSLibrariesAndIndex"/> -->
 
         <!-- model features -->
         <iconProvider implementation="com.weng.demo_man.pkg.ROSPackageIconProvider" order="before directory"/>
