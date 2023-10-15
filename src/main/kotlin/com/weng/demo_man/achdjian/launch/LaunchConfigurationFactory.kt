@@ -14,8 +14,7 @@ object IDs {
 
 class LaunchConfigurationFactory(val configurationType: LaunchConfigurationType) :
     ConfigurationFactory(configurationType) {
-    override fun createTemplateConfiguration(project: Project) =
-        LaunchConfiguration(project, configurationType.confFactory, "")
+    override fun createTemplateConfiguration(project: Project) = LaunchConfiguration(project, configurationType.confFactory, "")
 
     override fun getSingletonPolicy() = RunConfigurationSingletonPolicy.SINGLE_INSTANCE_ONLY
     override fun getId() = IDs.FACTORY

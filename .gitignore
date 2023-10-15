@@ -27,3 +27,5 @@ plugins-test
 plugins
 config-test
 config
+/src/main/java/com/weng/demo_man/rosinterface/*
+/src/main/java/com/weng/demo_man/psi/*

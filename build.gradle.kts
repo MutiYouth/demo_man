@@ -131,6 +131,7 @@ tasks {
     // }
 
     withType<Zip> {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
         // 在plugins/demo_man/lib下生成
         archiveFileName = "demo_man_$version.zip"
     }
