@@ -36,7 +36,7 @@ import java.util.stream.Collectors;
  * @author Noam Dori
  */
 public class ROSWorkspacePackageFinder extends ROSPackageFinderBase {
-    private static final Logger LOG = Logger.getInstance("#com.weng.demo_man.workspace.ROSWorkspacePackageFinder");
+    private static final Logger LOG = Logger.getInstance("#com.weng.demo_man.pkg.ROSWorkspacePackageFinder");
     private static final String WS_LIB = "workspace";
     private static final VirtualFileSystem FILE_SYSTEM = VirtualFileManager.getInstance()
             .getFileSystem(LocalFileSystem.PROTOCOL);

@@ -33,7 +33,7 @@ import static com.weng.demo_man.pkg.psi.impl.ROSCompiledPackage.RootType;
  * @author Noam Dori
  */
 public class ROSCompiledPackageFinder extends ROSPackageFinderBase {
-    private static final Logger LOG = Logger.getInstance("#com.weng.demo_man.workspace.ROSCompiledPackageFinder");
+    private static final Logger LOG = Logger.getInstance("#com.weng.demo_man.pkg.ROSCompiledPackageFinder");
     private static final String ROS_LIB = "ROS";
 
     @NotNull

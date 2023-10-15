@@ -20,7 +20,7 @@ import java.util.concurrent.ConcurrentMap;
  * @author Noam Dori
  */
 public interface ROSPackageFinder {
-    ExtensionPointName<ROSPackageFinder> EP_NAME = ExtensionPointName.create("ros-integrate.packageFinder");
+    ExtensionPointName<ROSPackageFinder> EP_NAME = ExtensionPointName.create("com.weng.demo_man.packageFinder");
 
     List<ROSPackageFinder> FINDERS = ROSPackageFinder.EP_NAME.getExtensionList();
 

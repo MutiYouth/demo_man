@@ -9,7 +9,7 @@ import com.weng.demo_man.pkg.psi.ROSPackage;
  * @author Noam Dori
  */
 public interface ExportLangHelper {
-    ExtensionPointName<ExportLangHelper> EP_NAME = ExtensionPointName.create("ros-integrate.exportLangHelper");
+    ExtensionPointName<ExportLangHelper> EP_NAME = ExtensionPointName.create("com.weng.demo_man.exportLangHelper");
 
     /**
      * @param lang the language the package is supposed to generate messages for.

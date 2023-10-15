@@ -5,8 +5,7 @@
         <spellchecker.bundledDictionaryProvider implementation="com.weng.demo_man.ROSBundledDictionaryProvider"/>
 
         <!-- ROS Settings -->
-        <projectConfigurable instance="com.weng.demo_man.settings.ROSSettingsPage" groupId="language" id="ROS"
-                             displayName="ROS"/>
+        <projectConfigurable instance="com.weng.demo_man.settings.ROSSettingsPage" groupId="language" id="ROS" displayName="ROS"/>
         <projectConfigurable instance="com.weng.demo_man.buildtool.ROSProfileSettingsPage" groupId="build" id="ROS.Profiles"
         displayName="ROS Profiles"/>
         <projectService serviceImplementation="com.weng.demo_man.settings.ROSSettings"/>
