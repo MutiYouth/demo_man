@@ -8,7 +8,7 @@ import com.intellij.testFramework.fixtures.BasePlatformTestCase
 import com.intellij.util.PsiErrorElementUtil
 //import com.weng.demo_man.services.GitStatsService
 
-@TestDataPath("\$CONTENT_ROOT/src/test/kotlin/com/weng/demo_man/simple_test")
+@TestDataPath("\$CONTENT_ROOT/src/test/kotlin/com/weng/demo_man/simple_test/data")
 class MyPluginTest : BasePlatformTestCase() {
 
     fun testXMLFile() {

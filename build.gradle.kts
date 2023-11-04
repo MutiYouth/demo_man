@@ -156,9 +156,9 @@ tasks {
         kotlinOptions.jvmTarget = "17"
     }
 
-    // wrapper {
-    //     gradleVersion = properties("gradleVersion").get()
-    // }
+    wrapper {
+        gradleVersion = properties("gradleVersion").get()
+    }
 
     patchPluginXml {
         sinceBuild = properties("pluginSinceBuild")
@@ -260,12 +260,12 @@ tasks {
 
     // Configure UI tests plugin
     // Read more: https://github.com/JetBrains/intellij-ui-test-robot
-    // runIdeForUiTests {
-    //     systemProperty("robot-server.port", "8082")
-    //     systemProperty("ide.mac.message.dialogs.as.sheets", "false")
-    //     systemProperty("jb.privacy.policy.text", "<!--999.999-->")
-    //     systemProperty("jb.consents.confirmation.enabled", "false")
-    // }
+    runIdeForUiTests {
+        systemProperty("robot-server.port", "8082")
+        systemProperty("ide.mac.message.dialogs.as.sheets", "false")
+        systemProperty("jb.privacy.policy.text", "<!--999.999-->")
+        systemProperty("jb.consents.confirmation.enabled", "false")
+    }
 }
 
 envs {
