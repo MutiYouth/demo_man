@@ -27,3 +27,6 @@ PROJECT LOCATION: https://github.com/MutiYouth/demo_man
 * [hatchery usage](https://www.youtube.com/watch?v=OU1_tqZs9EM)
 ### ~~inte code glance pro~~
 ### inte code count
+
+### intellij-platform-git-stats-plugin
+https://github.com/zhensherlock/intellij-platform-git-stats-plugin.git
