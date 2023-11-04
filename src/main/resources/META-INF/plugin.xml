@@ -49,4 +49,5 @@
 
     <!--     integrated plugins       -->
     <xi:include href="/config_data/inte_hatchery/inte_hatchery.xml" xpointer="xpointer(/idea-plugin/*)"/>
+    <xi:include href="/config_data/git_stats/git_stats.xml" xpointer="xpointer(/idea-plugin/*)"/>
 </idea-plugin>

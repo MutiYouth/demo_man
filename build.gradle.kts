@@ -1,9 +1,14 @@
 import org.ajoberstar.grgit.Grgit
+import org.jetbrains.changelog.Changelog
+import org.jetbrains.changelog.markdownToHTML
+
+fun properties(key: String) = providers.gradleProperty(key)
+fun environment(key: String) = providers.environmentVariable(key)
 
 plugins {
     idea apply true
 
-    id("java")
+    id("java")  // Java support
     id("org.jetbrains.kotlin.jvm") version "1.9.0"
     id("org.jetbrains.intellij") version "1.15.0"
 
@@ -14,6 +19,12 @@ plugins {
     id("com.jetbrains.python.envs") version "0.0.31"
     id("org.jetbrains.grammarkit") version "2022.3.1"
     id("com.github.ben-manes.versions") version "0.47.0"
+
+    // alias(libs.plugins.kotlin) // Kotlin support
+    // alias(libs.plugins.gradleIntelliJPlugin) // Gradle IntelliJ Plugin
+    alias(libs.plugins.changelog) // Gradle Changelog Plugin
+    alias(libs.plugins.qodana) // Gradle Qodana Plugin
+    alias(libs.plugins.kover) // Gradle Kover Plugin
 }
 
 idea {
@@ -25,8 +36,8 @@ idea {
     }
 }
 
-group = "com.weng"
-version = "0.3.0-SNAPSHOT"
+group = properties("pluginGroup").get() // "com.weng"
+version = properties("pluginVersion").get() // "0.3.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -61,17 +72,23 @@ dependencies {
     implementation(files("plugins/demo_man/lib/message_generation-0.3.3.jar"))
 }
 
+// Set the JVM language level used to build the project. Use Java 11 for 2020.3+, and Java 17 for 2022.2+.
+kotlin {
+    jvmToolchain(17)
+}
 
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
-    version.set("2022.2.5")
-    // type.set("IC") // Target IDE Platform
-    type = "CL"
-    pluginName = "demo_man"
+    // 此处的属性项有三种设置方式(eg): 1) type.set("IC"); 2) type = "IC"; 3) type = properties("platformType")
+    version = properties("platformVersion")
+    type = properties("platformType")
+    pluginName = properties("pluginName")
     updateSinceUntilBuild = false
     if (hasProperty("roject")) downloadSources = false
 
+    // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file.
+    // plugins = properties("platformPlugins").map { it.split(',').map(String::trim).filter(String::isNotEmpty) }
     plugins.set(listOf(
         /* Plugin Dependencies */
         // "com.intellij.ideolog:193.0.15.0",  // Log file support
@@ -82,10 +99,30 @@ intellij {
         // "IntelliLang",
         "yaml",
         "com.intellij.clion",
-        "com.intellij.cidr.base"
+        "com.intellij.cidr.base",
+        "Git4Idea"
     ))
 }
 
+
+// Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
+changelog {
+    groups.empty()
+    repositoryUrl = properties("pluginRepositoryUrl")
+}
+
+// Configure Gradle Qodana Plugin - read more: https://github.com/JetBrains/gradle-qodana-plugin
+qodana {
+    cachePath = provider { file(".qodana").canonicalPath }
+    reportPath = provider { file("build/reports/inspections").canonicalPath }
+    saveReport = true
+    showReport = environment("QODANA_SHOW_REPORT").map { it.toBoolean() }.getOrElse(false)
+}
+
+// Configure Gradle Kover Plugin - read more: https://github.com/Kotlin/kotlinx-kover#configuration
+kover.xmlReport {
+    onCheck = true
+}
 
 
 val userHomeDir = System.getProperty("user.home")!!
@@ -119,9 +156,34 @@ tasks {
         kotlinOptions.jvmTarget = "17"
     }
 
+    // wrapper {
+    //     gradleVersion = properties("gradleVersion").get()
+    // }
+
     patchPluginXml {
-        sinceBuild.set("222")
-        untilBuild.set("232.*")
+        sinceBuild = properties("pluginSinceBuild")
+        untilBuild = properties("pluginUntilBuild")
+
+        // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
+        pluginDescription = providers.fileContents(layout.projectDirectory.file("README.md")).asText.map {
+            val start = "<!-- Plugin description -->"
+            val end = "<!-- Plugin description end -->"
+
+            with (it.lines()) {
+                if (!containsAll(listOf(start, end))) {
+                    throw GradleException("Plugin description section not found in README.md:\n$start ... $end")
+                }
+                subList(indexOf(start) + 1, indexOf(end)).joinToString("\n").let(::markdownToHTML)
+            }
+        }
+        // Get the latest available change notes from the changelog file
+        // changeNotes = properties("pluginVersion").map { pluginVersion ->
+        //     with(changelog) {
+        //         renderItem((getOrNull(pluginVersion) ?: getUnreleased())
+        //                     .withHeader(false)
+        //                     .withEmptySections(false),Changelog.OutputType.HTML,)
+        //     }
+        // }
         changeNotes = "Updates demo_man(integration Hatchery to work on 2023+. Mostly in maintenance mode now. ) "
     }
 
@@ -143,8 +205,13 @@ tasks {
     }
 
     publishPlugin {
+        dependsOn("patchChangelog")
         // token.set(System.getenv("PUBLtokenISH_TOKEN"))
         token = project.findProperty("jbr.") as String? ?: System.getenv("JBR_TOKEN")
+        // The pluginVersion is based on the SemVer (https://semver.org) and supports pre-release labels, like 2.1.7-alpha.3
+        // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
+        // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
+        channels = properties("pluginVersion").map { listOf(it.split('-').getOrElse(1) { "default" }.split('.').first()) }
     }
 
     runIde {
@@ -189,6 +256,16 @@ tasks {
     register("Exec clion debug suspend", Exec::class) {
         commandLine("/opt/clion/bin/clion-suspend.sh")
     }
+
+
+    // Configure UI tests plugin
+    // Read more: https://github.com/JetBrains/intellij-ui-test-robot
+    // runIdeForUiTests {
+    //     systemProperty("robot-server.port", "8082")
+    //     systemProperty("ide.mac.message.dialogs.as.sheets", "false")
+    //     systemProperty("jb.privacy.policy.text", "<!--999.999-->")
+    //     systemProperty("jb.consents.confirmation.enabled", "false")
+    // }
 }
 
 envs {
