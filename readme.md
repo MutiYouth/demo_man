@@ -5,6 +5,9 @@ PROJECT LOCATION: https://github.com/MutiYouth/demo_man
 Readme.md中的描述。xxxx.
 <!-- Plugin description end -->
 
+Notice:<br/>
+if can not load build.gradle.kts, please ensure that you can visit google.
+
 
 ## todos:
 ### hello world
